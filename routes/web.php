@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,12 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+    $role=Auth::user()->role;
+    if ($role=='1') {
+        return view('admin.dashboard');
+    } else {
+        return view('dashboard');
+    }
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
