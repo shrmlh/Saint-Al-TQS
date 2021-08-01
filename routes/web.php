@@ -19,16 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $role=Auth::user()->role;
-    if ($role=='1') {
+Route::group(['middleware'=>'prevent-back-history'], function () {
+    Route::get('/admin', function () {
         return view('admin.dashboard');
-    } else {
+    })->middleware(['auth', 'admin'])->name('admin');
+
+    Route::get('/dashboard', function () {
         return view('dashboard');
-    }
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('redirects', 'App\Http\Controllers\HomeController@index');
-
+    })->middleware(['auth', 'rider'])->name('dashboard');
+});
 require __DIR__.'/auth.php';
