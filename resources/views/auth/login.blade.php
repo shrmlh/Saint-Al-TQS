@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="mt-3">
                                     <button
-                                        class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">
+                                        class="btn btn-block btn-gradient-primary btn-sm font-weight-medium auth-form-btn">
                                         {{ __('Log in') }}</button>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
