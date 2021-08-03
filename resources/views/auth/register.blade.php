@@ -1,59 +1,55 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth">
+                <div class="row flex-grow">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left p-5">
+                            <div class="brand-logo">
+                                <a href="/">
+                                    <img src="{{ asset('assets/images/logo.svg') }}">
+                                </a>
+                            </div>
+                            <h4>New here?</h4>
+                            <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                            <!-- Validation Errors -->
+                            <x-auth-validation-errors class="pt-2" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+                            <form class="pt-3" method="POST" action="{{ route('register') }}">
+                                @csrf
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                                <div class="form-group">
+                                    <x-input type="text" class="form-control form-control-lg" id="name" name="name"
+                                        :value="old('name')" required autofocus placeholder="Name"/>
+                                </div>
+                                <div class="form-group">
+                                    <x-input type="email" class="form-control form-control-lg" id="email" name="email"
+                                        :value="old('email')" required placeholder="Email"/>
+                                </div>
+                                <div class="form-group">
+                                    <x-input type="password" class="form-control form-control-lg" id="password"
+                                        name="password" required autocomplete="new-password" placeholder="Password"/>
+                                </div>
+                                <div class="form-group">
+                                    <x-input type="password" class="form-control form-control-lg"
+                                        id="password_confirmation" name="password_confirmation" required
+                                        placeholder="Confirm Password"/>
+                                </div>
+                                <div class="mt-3">
+                                    <button
+                                        class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">{{ __('Register') }}</button>
+                                </div>
+                                <div class="text-center mt-4 font-weight-light"> Already have an account? <a
+                                        href="{{ route('login') }}" class="text-primary">Login</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
 </x-guest-layout>

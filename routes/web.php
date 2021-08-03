@@ -23,6 +23,10 @@ Route::group(['middleware'=>'prevent-back-history'], function () {
     Route::get('/admin', function () {
         return view('admin.dashboard');
     })->middleware(['auth', 'admin'])->name('admin');
+    
+    Route::get('/test', function () {
+        return view('admin.test');
+    })->middleware(['auth', 'admin'])->name('test');
 
     Route::get('/dashboard', function () {
         return view('dashboard');
