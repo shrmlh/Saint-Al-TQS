@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +20,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware'=>'prevent-back-history'], function () {
+Route::group(['middleware'=>['auth', 'admin', 'prevent-back-history']], function () {
+    
     Route::get('/admin', function () {
         return view('admin.dashboard');
-    })->middleware(['auth', 'admin'])->name('admin');
-    
-    Route::get('/test', function () {
-        return view('admin.test');
-    })->middleware(['auth', 'admin'])->name('test');
+    })->name('admin');
 
+    require __DIR__.'/admin/events.php';
+
+});
+
+Route::group(['middleware'=>['auth', 'rider', 'prevent-back-history']], function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->middleware(['auth', 'rider'])->name('dashboard');
+    })->name('dashboard');
 });
+
 require __DIR__.'/auth.php';
