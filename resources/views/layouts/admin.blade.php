@@ -27,25 +27,28 @@
 
 <body>
 
-    <div class="container-scroller">
-
-        @include('admin.parts.navigations')
-        
-        <div class="container-fluid page-body-wrapper">
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    
+    <div class="page-container">
 
         @include('admin.parts.sidenav')
+        
+        <div class="main-content">
 
-            <div class="main-panel">
-                
-                <div class="content-wrapper">
+            @include('admin.parts.header')
+            
+            @include('admin.parts.pagetitle')
+
+            <div class="main-content-inner">
+
                     @yield('content')
-                </div>
-
-                @include('admin.parts.footer')
+                
             </div>
 
         </div>
-
+        @include('admin.parts.footer')
     </div>
 
     <!-- offset area end -->

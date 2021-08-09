@@ -1,6 +1,7 @@
-<footer class="footer">
-    <div class="container-fluid clearfix">
-        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">All Rights Reserved.</span>
-        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"></span>
+<!-- footer area start-->
+<footer>
+    <div class="footer-area">
+        <p>© Copyright 2021. All right reserved.</p>
     </div>
 </footer>
+<!-- footer area end-->
