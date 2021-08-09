@@ -1,55 +1,57 @@
 <x-guest-layout>
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth">
-                <div class="row flex-grow">
-                    <div class="col-lg-4 mx-auto">
-                        <div class="auth-form-light text-left p-5">
-                            <div class="brand-logo">
-                                <a href="/">
-                                    <img src="{{ asset('assets/images/logo.svg') }}">
-                                </a>
-                            </div>
-                            <h4>New here?</h4>
-                            <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- login area start -->
+    <div class="login-area">
+        <div class="container">
+            <div class="login-box ptb--100">
 
-                            <!-- Validation Errors -->
-                            <x-auth-validation-errors class="pt-2" :errors="$errors" />
+                <form method="POST" action="{{ route('register') }}" class="pt-3">
+                    @csrf
+                    <div class="login-form-head">
+                        <h4>New here?</h4>
+                        <p>Signing up is easy. It only takes a few steps.</p>
+                    </div>
+                    <div class="login-form-body">
 
-                            <form class="pt-3" method="POST" action="{{ route('register') }}">
-                                @csrf
-
-                                <div class="form-group">
-                                    <x-input type="text" class="form-control form-control-lg" id="name" name="name"
-                                        :value="old('name')" required autofocus placeholder="Name"/>
-                                </div>
-                                <div class="form-group">
-                                    <x-input type="email" class="form-control form-control-lg" id="email" name="email"
-                                        :value="old('email')" required placeholder="Email"/>
-                                </div>
-                                <div class="form-group">
-                                    <x-input type="password" class="form-control form-control-lg" id="password"
-                                        name="password" required autocomplete="new-password" placeholder="Password"/>
-                                </div>
-                                <div class="form-group">
-                                    <x-input type="password" class="form-control form-control-lg"
-                                        id="password_confirmation" name="password_confirmation" required
-                                        placeholder="Confirm Password"/>
-                                </div>
-                                <div class="mt-3">
-                                    <button
-                                        class="btn btn-block btn-gradient-primary btn-sm font-weight-medium auth-form-btn">{{ __('Register') }}</button>
-                                </div>
-                                <div class="text-center mt-4 font-weight-light"> Already have an account? <a
-                                        href="{{ route('login') }}" class="text-primary">Login</a>
-                                </div>
-                            </form>
+                    <div class="text-danger">
+                        <!-- Validation Errors -->
+                        <x-auth-validation-errors class="pb-4" :errors="$errors" />
+                    </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <x-input type="text" class="form-control" id="name" name="name"
+                                :value="old('name')" required autofocus placeholder="Enter Name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <x-input type="email" class="form-control" name="email" :value="old('email')" required id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your
+                                email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <x-input type="password" class="form-control" name="password" id="password" 
+                                required autocomplete="new-password" placeholder="Password"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password_confirmation">Confirm Password</label>
+                            <x-input type="password" class="form-control" name="password_confirmation" id="password_confirmation" 
+                                required autocomplete="new-password" placeholder="Confirm Password"/>
+                        </div>
+                        <div class="submit-btn-area">
+                            <button id="form_submit" type="submit">Register <i class="ti-arrow-right"></i></button>
+                        </div>
+                        <div class="form-footer text-center mt-2">
+                            <p class="text-muted">Already have an account?
+                                <a href="{{ route('login') }}">Login</a>
+                            </p>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-            <!-- content-wrapper ends -->
         </div>
-        <!-- page-body-wrapper ends -->
     </div>
 </x-guest-layout>

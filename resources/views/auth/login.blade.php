@@ -24,7 +24,7 @@
                     </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <x-input type="email" class="form-control" name="email" :value="old('email')" required id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
+                            <x-input type="email" class="form-control" name="email" :value="old('email')" required id="email" autofocus aria-describedby="emailHelp" placeholder="Enter email"/>
                             <small id="emailHelp" class="form-text text-muted">We'll never share your
                                 email with anyone else.</small>
                         </div>
@@ -32,14 +32,14 @@
                             <label for="password">Password</label>
                             <x-input type="password" class="form-control" name="password" required autocomplete="current-password" id="password" placeholder="Password"/>
                         </div>
-                        <div class="row mb-4 rmber-area">
-                            <div class="col-6">
+                        <div class="row mb-3 rmber-area">
+                            <div class="col-5">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" name="remember" id="customControlAutosizing">
                                     <label class="custom-control-label" for="customControlAutosizing">Remember Me</label>
                                 </div>
                             </div>
-                            <div class="col-6 text-right">
+                            <div class="col-7 text-right">
                                 @if (Route::has('password.request'))
                                     <a href="{{ route('password.request') }}">
                                         {{ __('Forgot your password?') }}
