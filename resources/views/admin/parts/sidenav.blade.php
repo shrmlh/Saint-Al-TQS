@@ -6,15 +6,15 @@
             </div>
             <div class="main-menu">
                 <div class="menu-inner">
-                    <nav>
+                    <nav class="sidebar">
                         <ul class="metismenu" id="menu">
-                            <li><a href="{{ route('admin') }}"><i class="ti-map-alt"></i> <span>Dashboard</span></a></li>
-                            <li class="active">
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Events</span></a>
-                                <ul class="collapse">
-                                    <li class="active"><a href="{{ route('eventsList') }}">List of Events</a></li>
-                                    <li><a href="{{ route('createEvent') }}">Create Event</a></li>
-                                    <li><a href="index3.html">Event Notification</a></li>
+                            <li class="nav-item"><a href="{{ route('admin') }}"><i class="ti-map-alt"></i> <span>Dashboard</span></a></li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" aria-expanded="false"><i class="ti-dashboard"></i><span>Events</span></a>
+                                <ul class="collapse sub-menu">
+                                    <li class="nav-item"><a href="{{ route('eventsList') }}">List of Events</a></li>
+                                    <li class="nav-item"><a href="{{ route('createEvent') }}">Create Event</a></li>
+                                    <li class="nav-item"><a href="index3.html">Event Notification</a></li>
                                 </ul>
                             </li>
                             <li>
