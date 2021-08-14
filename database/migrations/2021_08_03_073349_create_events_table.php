@@ -20,6 +20,8 @@ class CreateEventsTable extends Migration
             $table->dateTime('event_start');
             $table->dateTime('event_end');
             $table->double('event_fee', 8, 2);
+            $table->unsignedBigInteger('status');
+            $table->foreign('status')->references('id')->on('events_status');
             $table->timestamps();
         });
     }

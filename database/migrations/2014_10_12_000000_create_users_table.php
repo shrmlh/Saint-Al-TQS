@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 class CreateUsersTable extends Migration
 {
     /**
@@ -17,12 +18,23 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('role')->default(0);
+            $table->unsignedBigInteger('role');
+            $table->foreign('role')->references('id')->on('user_roles');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert( array(
+            array(
+            "name" => "Administrator", 
+            "email" => "admin@gmail.com",
+            "role" => 1,
+            "password" => Hash::make("admin123"),
+            "created_at"=> now(),
+            "updated_at"=> now()),
+        ));
     }
 
     /**

@@ -46,7 +46,7 @@ class EventController extends Controller
 
         Event::create($request->all());
 
-        return redirect()->route('admin.event_modules.create.index')->with('success','Event created successfully.');
+        return redirect()->route('admin.event_modules.create')->with('success','Event created successfully.');
     }
 
     /**
@@ -55,9 +55,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Event $event)
     {
-        //
+        return view('admin.event_modules.show',compact('event'));
     }
 
     /**
@@ -66,9 +66,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $event)
     {
-        //
+        return view('admin.event_modules.edit',compact('event'));
     }
 
     /**
@@ -78,9 +78,19 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Event $event)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:100',
+            'theme' => 'nullable',
+            'event_start' => 'required',
+            'event_end' => 'required',
+            'event_fee' => 'required'
+        ]);
+
+        $event->update($request->all());
+
+        return redirect()->route('admin.event_modules.index')->with('success','Event updated successfully.');
     }
 
     /**
@@ -89,8 +99,11 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
-        //
+        $event->delete();
+
+        return redirect()->route('admin.event_modules.index')
+                       ->with('success','Event deleted successfully');
     }
 }
