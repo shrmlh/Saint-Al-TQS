@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        <link rel="stylesheet" href="{{ asset('css/mystyle.css') }}">
+        
         <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/icon/favicon.ico') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="{{ asset('assets/css/default-css.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/mystyle.css') }}">
         <!-- modernizr css -->
         <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
     </head>
