@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
-
-class CreateEventsStatusTable extends Migration
+class CreateEventStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +13,12 @@ class CreateEventsStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('events_status', function (Blueprint $table) {
-            $table->id();
+        Schema::create('event_statuses', function (Blueprint $table) {
+            $table->id('stat_id');
             $table->string('status', 30)->unique();
             $table->timestamps();
         });
-        DB::table('events_status')->insert( array(
+        DB::table('event_statuses')->insert( array(
             array("status" => "Open", "created_at"=> now(),"updated_at"=> now()),
             array("status" => "Closed", "created_at"=> now(),"updated_at"=> now()),
             array("status" => "Ongoing", "created_at"=> now(),"updated_at"=> now()),
@@ -35,6 +34,6 @@ class CreateEventsStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events_status');
+        Schema::dropIfExists('event_statuses');
     }
 }

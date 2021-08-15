@@ -12,4 +12,8 @@ class Event extends Model
     protected $fillable = [
         'title', 'theme', 'event_start', 'event_end', 'event_fee'
     ];
+    
+    public function eventstatus(){
+        return $this->hasOne(EventStatus::class, 'stat_id', 'event_status');
+    }
 }

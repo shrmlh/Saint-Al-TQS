@@ -39,16 +39,25 @@
                             </thead>
                             <tbody>
                                 @foreach ($events as $event)
+                                @if($loop->last)
+                                    <input type="hidden" id="event_count" value="{{$loop->count}}">
+                                @endif
                                 <tr>
                                     <th scope="row">{{$event -> title}}</th>
-                                    <td>{{$event -> event_start}}</td>
-                                    <td>{{$event -> event_end}}</td>
+                                    <td>{!! date('M-d-Y | h:i a', strtotime($event -> event_start)) !!}</td>
+                                    <td>{!! date('M-d-Y | h:i a', strtotime($event -> event_end)) !!}</td>
                                     <td>
-                                        <div class="progress" style="height: 8px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <input type="hidden" id="event_start{{$loop -> iteration}}" value="{{$event -> event_start}}">
+                                        <input type="hidden" id="event_end{{$loop -> iteration}}" value="{{$event -> event_end}}">
+                                        <div class="progress" style="height: 18px">
+                                            <div class="progress-bar" id="progressor{{$loop -> iteration}}" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </td>
-                                    <td><span class="status-p bg-primary">pending</span></td>
+                                    <td>
+                                        <div class="status-progress" style="height: auto;">
+                                            <span class="status-p bg-primary">{{$event->eventstatus->status}}</span>
+                                        </div>
+                                    </td>
                                     <td>
                                         <ul class="d-flex justify-content-center">
                                             <li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-edit"></i></a></li>
@@ -66,4 +75,8 @@
     </div>
     <!-- Progress Table end -->
 </div>
+@endsection
+
+@section('customscript')
+<script src="{{ asset('/js/percentage.js') }}"></script>
 @endsection
