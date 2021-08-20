@@ -10,7 +10,14 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'theme', 'event_start', 'event_end', 'event_fee'
+        'title', 
+        'theme', 
+        'reg_start',
+        'event_start', 
+        'event_end', 
+        'event_fee',
+        'image',
+        'event_status'
     ];
     
     public function eventstatus(){
