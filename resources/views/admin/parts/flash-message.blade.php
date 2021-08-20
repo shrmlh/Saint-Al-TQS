@@ -31,3 +31,15 @@
     </div>
 </div>
 @endif
+
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+    <div class="alert-dismiss">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ $error }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>
+            </button>
+        </div>
+    </div>
+    @endforeach
+@endif
