@@ -22,14 +22,28 @@
             <div class="card-body">
                 
                 @include('admin.parts.flash-message')
-
-                <h4 class="header-title">List of Events</h4>
+                
+                
+                <div class="row align-items-center">
+                   
+                    <div class="col-sm-12 clearfix">
+                        <div class="pull-left">
+                            <h4 class="header-title">List of Events</h4>
+                            </div>
+                        <div class="pull-right">
+                            <a class="btn btn-flat btn-outline-primary mb-3" href="{{ route('createEvent') }}"><i class="fa fa-calendar-plus-o"></i> Create New Event</a>
+                        </div>
+                    </div>
+                   
+                </div>
+               
                 <div class="single-table">
                     <div class="table-responsive">
                         <table class="table table-hover progress-table text-center">
                             <thead class="text-uppercase">
                                 <tr>
                                     <th scope="col">Event</th>
+                                    <th scope="col">Start of Registration</th>
                                     <th scope="col">Start Date</th>
                                     <th scope="col">End Date</th>
                                     <th scope="col">Progress</th>
@@ -44,18 +58,21 @@
                                 @endif
                                 <tr>
                                     <th scope="row">{{$event -> title}}</th>
+                                    <td>{!! date('M-d-Y | h:i a', strtotime($event -> reg_start)) !!}</td>
                                     <td>{!! date('M-d-Y | h:i a', strtotime($event -> event_start)) !!}</td>
                                     <td>{!! date('M-d-Y | h:i a', strtotime($event -> event_end)) !!}</td>
                                     <td>
+                                        <input type="hidden" id="reg_start{{$loop -> iteration}}" value="{{$event -> reg_start}}">
                                         <input type="hidden" id="event_start{{$loop -> iteration}}" value="{{$event -> event_start}}">
                                         <input type="hidden" id="event_end{{$loop -> iteration}}" value="{{$event -> event_end}}">
+                                        <input type="hidden" id="event_status{{$loop -> iteration}}" value="{{$event->eventstatus->status}}">
                                         <div class="progress" style="height: 18px">
                                             <div class="progress-bar" id="progressor{{$loop -> iteration}}" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="status-progress" style="height: auto;">
-                                            <span class="status-p bg-primary">{{$event->eventstatus->status}}</span>
+                                            <span class="status-p" id="progressStatus{{$loop -> iteration}}">{{$event->eventstatus->status}}</span>
                                         </div>
                                     </td>
                                     <td>
