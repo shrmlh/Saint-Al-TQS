@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventStatus;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class EventController extends Controller
 {
     /**
@@ -25,7 +26,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view("admin.event_modules.create");
+        $status = EventStatus::orderBy('stat_id','asc')->pluck('status', 'stat_id');
+        return view("admin.event_modules.create")->with('status',$status);
     }
 
     /**
@@ -39,14 +41,33 @@ class EventController extends Controller
         $request->validate([
             'title' => 'required|max:100',
             'theme' => 'nullable',
+            'reg_start' => 'required',
             'event_start' => 'required',
             'event_end' => 'required',
-            'event_fee' => 'required'
+            'event_fee' => 'required',
+            'route_map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'event_status' => 'required'
         ]);
 
-        Event::create($request->all());
+        if ($image = $request->file('route_map')) {
+            $destinationPath = 'appimages/events/';
+            $routeMapImage = Str::random(40) . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $routeMapImage);
 
-        return redirect()->route('admin.event_modules.create')->with('success','Event created successfully.');
+            $event = new Event;
+            $event -> title  = $request-> title;
+            $event -> theme  = $request-> theme;
+            $event -> reg_start  = $request-> reg_start;
+            $event -> event_start  = $request-> event_start;
+            $event -> event_end  = $request-> event_end;
+            $event -> event_fee  = $request-> event_fee;
+            $event -> route_map  = $routeMapImage ;
+            $event -> event_status  = $request-> event_status;
+            $event->save();
+        }
+
+
+        return redirect()->route('createEvent')->with('success','Event created successfully.');
     }
 
     /**
