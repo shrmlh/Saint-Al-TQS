@@ -84,5 +84,5 @@
 @endsection
 
 @section('customscript')
-<script src="{{ asset('/js/datesetter.js') }}"></script>
+<script src="{{ asset('/js/dategetter.js') }}"></script>
 @endsection
