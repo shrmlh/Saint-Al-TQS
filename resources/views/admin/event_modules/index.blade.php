@@ -77,8 +77,16 @@
                                     </td>
                                     <td>
                                         <ul class="d-flex justify-content-center">
-                                            <li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-edit"></i></a></li>
-                                            <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
+                                            <li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-list-ol"></i></a></li>
+                                            <li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-gift"></i></a></li>
+                                            <li class="mr-3"><a href="{{ route('editEvent',$event->id) }}" class="text-secondary"><i class="fa fa-edit"></i></a></li>
+                                            <li>
+                                                <form action="{{ route('deleteEvent',$event->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="text-danger" style="outline: none;border:none"><i class="ti-trash"></i></button>
+                                                </form>
+                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
