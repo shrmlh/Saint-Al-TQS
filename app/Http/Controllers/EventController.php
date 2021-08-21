@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\EventStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 class EventController extends Controller
 {
     /**
@@ -51,7 +52,7 @@ class EventController extends Controller
 
         if ($image = $request->file('route_map')) {
             $destinationPath = 'appimages/events/';
-            $routeMapImage = Str::random(40) . "." . $image->getClientOriginalExtension();
+            $routeMapImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $routeMapImage);
 
             $event = new Event;
@@ -89,7 +90,8 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        return view('admin.event_modules.edit',compact('event'));
+        $status = EventStatus::orderBy('stat_id','asc')->pluck('status', 'stat_id');
+        return view('admin.event_modules.edit',compact('event'))->with('status',$status);
     }
 
     /**
@@ -106,12 +108,29 @@ class EventController extends Controller
             'theme' => 'nullable',
             'event_start' => 'required',
             'event_end' => 'required',
-            'event_fee' => 'required'
+            'event_fee' => 'required',
+            'route_map' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'event_status' => 'required' 
         ]);
+       
+        $input = $request->all();
+        if ($image = $request->file('route_map')) {
+            $destinationPath = 'appimages/events/';
+            
+            if (File::exists(public_path($destinationPath.($event->route_map)))) {
+                File::delete(public_path($destinationPath.($event->route_map)));
+            }
+            
+            $routeMapImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $routeMapImage);
+            $event -> route_map = "$routeMapImage";
+            
+        }else{
+            unset($event -> route_map);
+        }
+        $event->update($input);
 
-        $event->update($request->all());
-
-        return redirect()->route('admin.event_modules.index')->with('success','Event updated successfully.');
+        return redirect()->route('eventsList')->with('success','Event updated successfully.');
     }
 
     /**
@@ -122,9 +141,13 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+        $destinationPath = 'appimages/events/';
+        if (File::exists(public_path($destinationPath.($event->route_map)))) {
+            File::delete(public_path($destinationPath.($event->route_map)));
+        }
         $event->delete();
 
-        return redirect()->route('admin.event_modules.index')
-                       ->with('success','Event deleted successfully');
+        return redirect()->route('eventsList')
+                       ->with('success','Event deleted successfully.');
     }
 }
