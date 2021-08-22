@@ -15,6 +15,9 @@ class CreateEventFreebiesTable extends Migration
     {
         Schema::create('event_freebies', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('event');
+            $table->foreign('event')->references('id')->on('events');
+            $table->string('freebie',150);
             $table->timestamps();
         });
     }

@@ -13,4 +13,8 @@ class EventRules extends Model
         'event', 
         'rule', 
     ];
+    
+    public function eventmain(){
+        return $this->belongsTo(Event::class, 'event','id');
+    }
 }

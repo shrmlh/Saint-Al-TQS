@@ -21,6 +21,14 @@ class Event extends Model
     ];
     
     public function eventstatus(){
-        return $this->hasOne(EventStatus::class, 'stat_id', 'event_status');
+        return $this->belongsTo(EventStatus::class, 'event_status', 'stat_id');
+    }
+
+    public function eventrules(){
+        return $this->hasMany(EventRules::class, 'event', 'id');
+    }
+
+    public function eventfreebies(){
+        return $this->hasMany(EventFreebies::class, 'event', 'id');
     }
 }

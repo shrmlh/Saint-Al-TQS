@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Home')
+@section('title', 'Events')
 
 @section('pagetitle')
 <div class="col-sm-6">
@@ -57,7 +57,7 @@
                                     <input type="hidden" id="event_count" value="{{$loop->count}}">
                                 @endif
                                 <tr>
-                                    <th scope="row">{{$event -> title}}</th>
+                                    <th scope="row" class="th-header">{{$event -> title}}</th>
                                     <td>{!! date('M-d-Y | h:i a', strtotime($event -> reg_start)) !!}</td>
                                     <td>{!! date('M-d-Y | h:i a', strtotime($event -> event_start)) !!}</td>
                                     <td>{!! date('M-d-Y | h:i a', strtotime($event -> event_end)) !!}</td>
@@ -77,8 +77,8 @@
                                     </td>
                                     <td>
                                         <ul class="d-flex justify-content-center">
-                                            <li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-list-ol"></i></a></li>
-                                            <li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-gift"></i></a></li>
+                                            <li class="mr-3"><a href="{{ route('showEventRule',$event->id) }}" class="text-secondary"><i class="fa fa-list-ol"></i></a></li>
+                                            <li class="mr-3"><a href="{{ route('showEventFreebie',$event->id) }}" class="text-secondary"><i class="fa fa-gift"></i></a></li>
                                             <li class="mr-3"><a href="{{ route('editEvent',$event->id) }}" class="text-secondary"><i class="fa fa-edit"></i></a></li>
                                             <li>
                                                 <form action="{{ route('deleteEvent',$event->id) }}" method="POST">

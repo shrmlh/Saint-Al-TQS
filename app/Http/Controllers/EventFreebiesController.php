@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\EventRules;
+use App\Models\EventFreebies;
 use Illuminate\Http\Request;
 
-class EventRulesController extends Controller
+class EventFreebiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,11 +38,11 @@ class EventRulesController extends Controller
     {
         $request->validate([
             'event' => 'required',
-            'rule' => 'required',
+            'freebie' => 'required',
         ]);
-        EventRules::create($request->all());
+        EventFreebies::create($request->all());
        
-        return redirect()->route('showEventRule',$request->event)->with('success','New rule has been added successfully.');
+        return redirect()->route('showEventFreebie',$request->event)->with('success','New freebie has been added successfully.');
     }
 
     /**
@@ -53,7 +53,7 @@ class EventRulesController extends Controller
      */
     public function show(Event $event)
     {
-        return view('admin.event_modules.eventrules.show',compact('event'));
+        return view('admin.event_modules.eventfreebies.show',compact('event'));
     }
 
     /**
@@ -62,9 +62,9 @@ class EventRulesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(EventRules $eventrule)
+    public function edit(EventFreebies $eventfreebie)
     {
-        return view('admin.event_modules.eventrules.edit',compact('eventrule'));
+        return view('admin.event_modules.eventfreebies.edit',compact('eventfreebie'));
     }
 
     /**
@@ -74,15 +74,15 @@ class EventRulesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EventRules $eventrule)
+    public function update(Request $request, EventFreebies $eventfreebie)
     {
         $request->validate([
-            'rule' => 'required',
+            'freebie' => 'required',
         ]);
 
-        $eventrule->update($request->all());
+        $eventfreebie->update($request->all());
 
-        return redirect()->route('showEventRule',$eventrule->event)->with('success','Rule updated successfully');
+        return redirect()->route('showEventFreebie',$eventfreebie->event)->with('success','Freebie updated successfully');
     }
 
     /**
@@ -91,10 +91,10 @@ class EventRulesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EventRules $eventrule)
+    public function destroy(EventFreebies $eventfreebie)
     {
-        $eventrule->delete();
-        return redirect()->route('showEventRule',$eventrule->event)
-                       ->with('success','Event deleted successfully.');
+        $eventfreebie->delete();
+        return redirect()->route('showEventFreebie',$eventfreebie->event)
+                       ->with('success','Freebie deleted successfully.');
     }
 }
