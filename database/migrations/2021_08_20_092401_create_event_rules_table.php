@@ -16,7 +16,7 @@ class CreateEventRulesTable extends Migration
         Schema::create('event_rules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event');
-            $table->foreign('event')->references('id')->on('events');
+            $table->foreign('event')->references('id')->on('events')->onDelete('cascade');
             $table->string('rule',150);
             $table->timestamps();
         });
