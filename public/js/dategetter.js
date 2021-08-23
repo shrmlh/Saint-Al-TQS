@@ -8,9 +8,10 @@ Number.prototype.AddZero= function(b,c){
 var date_setter = {
     set event_dates(num){
         var d = new Date();
+        d.setDate(d.getDate()+num);
         this.localDateTime= [d.getFullYear().AddZero(),
         (d.getMonth()+1).AddZero(),
-        d.getDate()+num].join('-') +'T' +
+        d.getDate().AddZero()].join('-') +'T' +
         [d.getHours().AddZero(),
         d.getMinutes().AddZero()].join(':');
     }
