@@ -37,12 +37,15 @@ class EventFreebiesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'event' => 'required',
-            'freebie' => 'required',
+            'addMoreInputFields.*.event' => 'required',
+            'addMoreInputFields.*.freebie' => 'required',
         ]);
-        EventFreebies::create($request->all());
-       
-        return redirect()->route('showEventFreebie',$request->event)->with('success','New freebie has been added successfully.');
+
+        foreach ($request->addMoreInputFields as $key => $value) {
+            EventFreebies::create($value);
+        }
+
+        return back()->with('success','New freebie has been added successfully.');
     }
 
     /**

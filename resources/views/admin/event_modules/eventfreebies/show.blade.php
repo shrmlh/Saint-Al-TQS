@@ -25,17 +25,22 @@
                 @include('admin.parts.flash-message')
                 <form action="{{ route('storeEventFreebie') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <table class="table" id="dynamicAddRemove" rules="none">
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <input type="hidden" name="addMoreInputFields[0][event]" value="{{$event->id}}">
+                                    <input name="addMoreInputFields[0][freebie]" required class="form-control" type="text" id="freebie" placeholder="Freebie">
+                                    <div class="input-group-append">
+                                        <button type="button" name="add" id="dynamic-ar" class="btn btn-flat btn-outline-primary" style="width: 100px">Add</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                     <div class="form-row align-items-center">
-                        <div class="col-lg-10 col-md-8 my-1">
-                            <input type="hidden" name="event" value="{{$event->id}}">
-                            <div class="form-group">
-                                <input name="freebie" required class="form-control" type="text" id="freebie" placeholder="Freebie">
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 my-1">
-                            <div class="form-group">
-                                <button class="btn btn-flat btn-outline-primary w-100" type="submit">Add Freebie</button>
-                            </div>
+                        <div class="form-group col-lg-12">
+                            <button class="btn btn-flat btn-outline-primary w-100" type="submit">Add Freebie</button>
                         </div>
                     </div>
                 </form>
@@ -95,4 +100,27 @@
 
 @section('customscript')
 <script src="{{ asset('/js/percentage.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    var i = 0;
+    $("#dynamic-ar").click(function () {
+        ++i;
+        $("#dynamicAddRemove").append(
+        '<tr>'+
+            '<td>'+
+            
+                '<div class="input-group"><input type="hidden" name="addMoreInputFields['+i+'][event]" value="'+{{$event->id}}+'">'+
+                
+                '<input name="addMoreInputFields['+i+'][freebie]" required class="form-control" type="text" id="freebie" placeholder="Freebie">'+
+            
+                '<div class="input-group-append"><button type="button" class="btn btn-flat btn-outline-danger remove-input-field" style="width: 100px">Delete</button></div></div>'+
+            
+            '</td>'+
+        '</tr>'
+        );
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+    });
+</script>
 @endsection
