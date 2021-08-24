@@ -95,6 +95,6 @@ class EventRulesController extends Controller
     {
         $eventrule->delete();
         return redirect()->route('showEventRule',$eventrule->event)
-                       ->with('success','Event deleted successfully.');
+                       ->with('success','Rule deleted successfully.');
     }
 }
