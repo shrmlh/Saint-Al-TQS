@@ -70,7 +70,6 @@
                                     <td>{!! date('M-d-Y | h:i a', strtotime($eventstation->updated_at)) !!}</td>
                                     <td>
                                         <ul class="d-flex justify-content-center">
-                                            <li class="mr-3"><a href="{{ route('orderEventStation',$eventstation->event) }}" class="text-secondary"><i class="fa fa-sort-amount-asc"></i></a></li>
                                             <li class="mr-3"><a href="{{ route('editEventStation',$eventstation->id) }}" class="text-secondary"><i class="fa fa-edit"></i></a></li>
                                             <li>
                                                 <form action="{{ route('deleteEventStation',$eventstation->id) }}" method="POST">
