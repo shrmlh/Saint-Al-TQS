@@ -3,7 +3,7 @@
 use App\Http\Controllers\EventFreebiesController;
 use Illuminate\Support\Facades\Route;
 
-// Event Rules
+// Event Freebies
 Route::get('/show-event-freebies/{event}/show', [EventFreebiesController::class, 'show'])->name('showEventFreebie');
 Route::post('/store-event-freebie', [EventFreebiesController::class, 'store'])->name('storeEventFreebie');
 Route::get('/edit-event-freebie/{eventfreebie}/edit', [EventFreebiesController::class, 'edit'])->name('editEventFreebie');
