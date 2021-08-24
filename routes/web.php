@@ -29,6 +29,7 @@ Route::group(['middleware'=>['auth', 'admin', 'prevent-back-history']], function
     require __DIR__.'/admin/events.php';
     require __DIR__.'/admin/eventrules.php';
     require __DIR__.'/admin/eventfreebies.php';
+    require __DIR__.'/admin/eventstations.php';
 });
 
 Route::group(['middleware'=>['auth', 'rider', 'prevent-back-history']], function () {
