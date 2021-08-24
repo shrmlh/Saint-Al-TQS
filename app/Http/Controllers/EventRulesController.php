@@ -37,12 +37,15 @@ class EventRulesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'event' => 'required',
-            'rule' => 'required',
+            'addMoreInputFields.*.event' => 'required',
+            'addMoreInputFields.*.rule' => 'required',
         ]);
-        EventRules::create($request->all());
+
+        foreach ($request->addMoreInputFields as $key => $value) {
+            EventRules::create($value);
+        }
        
-        return redirect()->route('showEventRule',$request->event)->with('success','New rule has been added successfully.');
+        return back()->with('success','New rule has been added successfully.');
     }
 
     /**
