@@ -31,4 +31,8 @@ class Event extends Model
     public function eventfreebies(){
         return $this->hasMany(EventFreebies::class, 'event', 'id');
     }
+
+    public function eventstations(){
+        return $this->hasMany(Station::class, 'event', 'id');
+    }
 }
