@@ -17,14 +17,6 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Stations
-                                    </span></a>
-                                <ul class="collapse">
-                                    <li><a href="index.html">Create Stations</a></li>
-                                    <li><a href="index3-horizontalmenu.html">Station Assignment</a></li>
-                                </ul>
-                            </li>
-                            <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Payment</span></a>
                                 <ul class="collapse">
                                     <li><a href="barchart.html">Membership Applications</a></li>
