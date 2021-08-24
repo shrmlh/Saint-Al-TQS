@@ -77,6 +77,7 @@
                                     </td>
                                     <td>
                                         <ul class="d-flex justify-content-center">
+                                            <li class="mr-3"><a href="{{ route('showEventStation',$event->id) }}" class="text-secondary"><i class="fa fa-map-o"></i></a></li>
                                             <li class="mr-3"><a href="{{ route('showEventRule',$event->id) }}" class="text-secondary"><i class="fa fa-list-ol"></i></a></li>
                                             <li class="mr-3"><a href="{{ route('showEventFreebie',$event->id) }}" class="text-secondary"><i class="fa fa-gift"></i></a></li>
                                             <li class="mr-3"><a href="{{ route('editEvent',$event->id) }}" class="text-secondary"><i class="fa fa-edit"></i></a></li>
