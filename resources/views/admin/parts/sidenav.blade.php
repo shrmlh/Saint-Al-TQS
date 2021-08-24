@@ -14,12 +14,10 @@
                                 <ul class="collapse sub-menu">
                                     <li class="nav-item"><a href="{{ route('eventsList') }}">List of Events</a></li>
                                     <li class="nav-item"><a href="{{ route('createEvent') }}">Create Event</a></li>
-                                    <li class="nav-item"><a href="index3.html">Event Notification</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Stations
-                                        Types
                                     </span></a>
                                 <ul class="collapse">
                                     <li><a href="index.html">Create Stations</a></li>
