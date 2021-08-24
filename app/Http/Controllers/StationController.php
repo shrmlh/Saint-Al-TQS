@@ -37,12 +37,15 @@ class StationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'event' => 'required',
-            'station' => 'required',
+            'addMoreInputFields.*.event' => 'required',
+            'addMoreInputFields.*.station' => 'required',
         ]);
-        Station::create($request->all());
+
+        foreach ($request->addMoreInputFields as $key => $value) {
+            Station::create($value);
+        }
        
-        return redirect()->route('showEventStation',$request->event)->with('success','New station has been added successfully.');
+        return back()->with('success','New station has been added successfully.');
     }
 
     /**

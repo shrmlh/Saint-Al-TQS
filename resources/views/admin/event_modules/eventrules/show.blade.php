@@ -32,7 +32,7 @@
                                     <input type="hidden" name="addMoreInputFields[0][event]" value="{{$event->id}}">
                                     <input name="addMoreInputFields[0][rule]" required class="form-control" type="text" id="rule" placeholder="Rule">
                                     <div class="input-group-append">
-                                        <button type="button" name="add" id="dynamic-ar" class="btn btn-flat btn-outline-primary" style="width: 100px">Add Rule</button>
+                                        <button type="button" name="add" id="dynamic-ar" class="btn btn-flat btn-outline-primary" style="width: 100px">Add</button>
                                     </div>
                                 </div>
                             </td>
