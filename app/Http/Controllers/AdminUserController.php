@@ -97,6 +97,7 @@ class AdminUserController extends Controller
                 'required','string','email','max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
+            'status' => 'boolean'
         ]);
 
         $user->update([
@@ -104,6 +105,7 @@ class AdminUserController extends Controller
             'middleInitial' => strtoupper($request->middleInitial).".",
             'lastname' => strtoupper($request->lastname),
             'email' => $request->email,
+            'status' => $request->has('status')
         ]);
         return redirect()->route('userAdminList')->with('success','User updated successfully');
     }

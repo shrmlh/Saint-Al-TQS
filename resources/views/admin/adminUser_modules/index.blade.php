@@ -44,6 +44,7 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Date Created</th>
                                     <th scope="col">Date Updated</th>
                                     <th scope="col">Action</th>
@@ -54,6 +55,15 @@
                                 <tr>
                                     <th scope="row" class="th-header">{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleInitial }}</th>
                                     <td>{{ $user->email }}</td>
+                                    
+                                    @if($user->status==1) 
+                                    <td class="text-success">
+                                    @else
+                                    <td class="text-danger">
+                                    @endif
+                                        {{ $user->status ? 'Active' : 'Deactivated' }}
+                                    </td>
+
                                     <td>{!! date('M-d-Y | h:i a', strtotime($user -> created_at)) !!}</td>
                                     <td>{!! date('M-d-Y | h:i a', strtotime($user -> updated_at)) !!}</td>
                                     <td>

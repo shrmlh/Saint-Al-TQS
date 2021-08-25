@@ -47,6 +47,12 @@
                         <label for="email" class="col-form-label">Email</label>
                         <input name="email" value="{{$user->email}}" required class="form-control" type="text" id="email">
                     </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="status" name="status" value="1" {{ $user->status ? 'checked' : '' }}>
+                            <label class="custom-control-label" for="status">Status</label>
+                        </div>
+                    </div>
                     <div class="form-group mt-3">
                         <button class="btn btn-flat btn-outline-primary w-100" type="submit">Update User</button>
                     </div>
