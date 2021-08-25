@@ -21,11 +21,11 @@ class Admin
             return redirect()->route('login');
         }
 
-        if (Auth::user()->role == 1) {
+        if (Auth::user()->role == 1 || Auth::user()->role == 2) {
             return $next($request);
         }
 
-        if (Auth::user()->role == 2) {
+        if (Auth::user()->role == 3) {
             return redirect()->route('dashboard');
         }
     }

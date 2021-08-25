@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label for="middleInitial">Middle Initial</label>
-                            <x-input type="text" max="1" class="form-control" id="middleInitial" name="middleInitial"
+                            <x-input type="text" maxLength="1" class="form-control" id="middleInitial" name="middleInitial"
                                 :value="old('middleInitial')" required autofocus placeholder="Enter Middle Initial"/>
                         </div>
                         <div class="form-group">

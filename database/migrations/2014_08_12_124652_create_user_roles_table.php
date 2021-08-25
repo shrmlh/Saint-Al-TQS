@@ -22,6 +22,10 @@ class CreateUserRolesTable extends Migration
 
         DB::table('user_roles')->insert( array(
             array(
+            "role" => "SuperAdmin",
+            "created_at"=> now(),
+            "updated_at"=> now()),
+            array(
             "role" => "Administrator",
             "created_at"=> now(),
             "updated_at"=> now()),

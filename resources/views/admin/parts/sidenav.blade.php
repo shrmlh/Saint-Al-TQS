@@ -38,12 +38,12 @@
                                     <li><a href="table-basic.html">Participation</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            <li class="nav-item">
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Users</span></a>
-                                <ul class="collapse">
-                                    <li><a href="table-basic.html">User List</a></li>
-                                    <li><a href="table-basic.html">New User</a></li>
+                                <ul class="collapse sub-menu">
+                                    <li class="nav-item"><a href="{{route('userAdminList')}}">User List</a></li>
+                                    <li class="nav-item"><a href="{{route('createUserAdmin')}}">New User</a></li>
                                 </ul>
                             </li>
                             <li><a href="maps.html"><i class="ti-map-alt"></i> <span>Backup and Restore</span></a></li>
