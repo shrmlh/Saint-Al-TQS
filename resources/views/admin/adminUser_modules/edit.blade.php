@@ -56,3 +56,12 @@
     </div>
 </div>
 @endsection
+
+@section('customscript')
+<script>
+    $(document).ready(function() {
+        var str = $('#middleInitial').val();
+        $('#middleInitial').val(str.slice(0, -1));
+    });
+</script>
+@endsection

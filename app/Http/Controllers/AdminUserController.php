@@ -40,7 +40,7 @@ class AdminUserController extends Controller
     {
         $request->validate([
             'firstname' => 'required|string|max:30',
-            'middleInitial' => 'string|max:2',
+            'middleInitial' => 'string|max:1',
             'lastname' => 'required|string|max:30',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -91,7 +91,7 @@ class AdminUserController extends Controller
     {
         $request->validate([
             'firstname' => 'required|string|max:30',
-            'middleInitial' => 'string|max:2',
+            'middleInitial' => 'string|max:1',
             'lastname' => 'required|string|max:30',
             'email' => [
                 'required','string','email','max:255',
@@ -99,7 +99,12 @@ class AdminUserController extends Controller
             ],
         ]);
 
-        $user->update($request->all());
+        $user->update([
+            'firstname' => strtoupper($request->firstname),
+            'middleInitial' => strtoupper($request->middleInitial).".",
+            'lastname' => strtoupper($request->lastname),
+            'email' => $request->email,
+        ]);
         return redirect()->route('userAdminList')->with('success','User updated successfully');
     }
 
