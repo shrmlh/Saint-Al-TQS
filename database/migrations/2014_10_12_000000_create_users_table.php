@@ -16,7 +16,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('firstname',30);
+            $table->string('middleInitial',1)->nullable();
+            $table->string('lastname',30);
             $table->string('email')->unique();
             $table->unsignedBigInteger('role');
             $table->foreign('role')->references('id')->on('user_roles');
@@ -28,7 +30,9 @@ class CreateUsersTable extends Migration
 
         DB::table('users')->insert( array(
             array(
-            "name" => "Administrator", 
+            "firstname" => "Brynpryl", 
+            "middleInitial" => "P", 
+            "lastname" => "Bandiola", 
             "email" => "admin@gmail.com",
             "role" => 1,
             "password" => Hash::make("admin123"),

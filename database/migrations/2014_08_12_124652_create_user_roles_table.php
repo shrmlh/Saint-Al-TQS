@@ -26,10 +26,6 @@ class CreateUserRolesTable extends Migration
             "created_at"=> now(),
             "updated_at"=> now()),
             array(
-            "role" => "Leader",
-            "created_at"=> now(),
-            "updated_at"=> now()),
-            array(
             "role" => "Member",
             "created_at"=> now(),
             "updated_at"=> now()),

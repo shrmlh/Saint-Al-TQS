@@ -21,9 +21,19 @@
                         <x-auth-validation-errors class="pb-4" :errors="$errors" />
                     </div>
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <x-input type="text" class="form-control" id="name" name="name"
-                                :value="old('name')" required autofocus placeholder="Enter Name"/>
+                            <label for="firstname">Firstname</label>
+                            <x-input type="text" class="form-control" id="firstname" name="firstname"
+                                :value="old('firstname')" required autofocus placeholder="Firstname"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="middleInitial">Middle Initial</label>
+                            <x-input type="text" max="1" class="form-control" id="middleInitial" name="middleInitial"
+                                :value="old('middleInitial')" required autofocus placeholder="Enter Middle Initial"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <x-input type="text" class="form-control" id="lastname" name="lastname"
+                                :value="old('lastname')" required autofocus placeholder="Enter Lastname"/>
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
