@@ -32,7 +32,7 @@
                         <div class="col-sm-4 my-1">
                             <div class="form-group">
                                 <label for="middleInitial" class="col-form-label">Middle Initial</label>
-                                <x-input name="middleInitial" maxlength="1" required class="form-control" type="text" id="middleInitial" :value="old('middleInitial')"/>
+                                <x-input name="middleInitial" maxlength="2" required class="form-control" type="text" id="middleInitial" :value="old('middleInitial')"/>
                             </div>
                         </div>
                         <div class="col-sm-4 my-1">
