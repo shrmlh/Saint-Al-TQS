@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Home')
+@section('title', 'Edit Event')
 
 @section('pagetitle')
 <div class="col-sm-6">
