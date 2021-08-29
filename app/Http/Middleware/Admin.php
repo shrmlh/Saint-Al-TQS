@@ -17,6 +17,11 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
+        if(!Auth::user()->status) {
+            Auth::logout();
+            return redirect('login')->withErrors(['Your account is deactivated.']);
+        }
+
         if (!Auth::check()) {
             return redirect()->route('login');
         }
