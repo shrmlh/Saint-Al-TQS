@@ -8,7 +8,8 @@
         <h4 class="page-title pull-left">Edit Event</h4>
         <ul class="breadcrumbs pull-left">
             <li><a href="{{ route('admin') }}">Home</a></li>
-            <li><span>Edit Event</span></li>
+            <li><a href="{{ route('eventsList') }}">List of Events</a></li>
+            <li><span>{{$event->title}}</span></li>
         </ul>
     </div>
 </div>

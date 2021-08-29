@@ -24,11 +24,11 @@
                                     <li><a href="piechart.html">Payment Notification</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            <li class="nav-item">
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-slice"></i><span>Riders</span></a>
-                                <ul class="collapse">
-                                    <li><a href="fontawesome.html">Riders List</a></li>
-                                    <li><a href="themify.html">Rider Management</a></li>
+                                <ul class="collapse sub-menu">
+                                    <li class="nav-item"><a href="{{ route('userRiderList') }}">Riders List</a></li>
+                                    <li class="nav-item"><a href="themify.html">Rider Management</a></li>
                                 </ul>
                             </li>
                             <li>
