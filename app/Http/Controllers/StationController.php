@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Station;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StationController extends Controller
@@ -38,6 +39,7 @@ class StationController extends Controller
     {
         $request->validate([
             'addMoreInputFields.*.event' => 'required',
+            'addMoreInputFields.*.assigned_user' => 'required',
             'addMoreInputFields.*.station' => 'required',
         ]);
 
@@ -47,6 +49,31 @@ class StationController extends Controller
        
         return back()->with('success','New station has been added successfully.');
     }
+
+    // Fetch records
+    public function getUsers(Request $request){
+        $users = [];
+        $response = array();
+        if ($request->has('term')) {
+            $search = $request->term;
+            if ($search != '') {
+                $users = User::orderby('lastname', 'asc')
+                    ->select('id', 'lastname', 'firstname', 'middleInitial')
+                    ->where('lastname','like','%' .$search . '%')
+                    ->orWhere('firstname','like','%' .$search . '%')
+                    ->orWhere('middleInitial','like','%' .$search . '%')
+                ->get();
+            }
+            foreach ($users as $user) {
+                $response[] = array(
+                    "id"=>$user->id,
+                    "text"=>$user->lastname.", ".$user->firstname." ".$user->middleInitial.""
+                );
+            }
+        }
+        
+        return response()->json($response); 
+    } 
 
     /**
      * Display the specified resource.
