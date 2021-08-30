@@ -108,6 +108,7 @@ class StationController extends Controller
     {
         $request->validate([
             'station' => 'required',
+            'assigned_user' => 'required',
         ]);
 
         $eventstation->update($request->all());
