@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/mystyle.css') }}">
     <!-- modernizr css -->
     <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    @yield('customstyle')
 </head>
 
 <body>
