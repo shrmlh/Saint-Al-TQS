@@ -9,3 +9,5 @@ Route::post('/store-event-station', [StationController::class, 'store'])->name('
 Route::get('/edit-event-station/{eventstation}/edit', [StationController::class, 'edit'])->name('editEventStation');
 Route::put('/update-event-station/{eventstation}', [StationController::class, 'update'])->name('updateEventStation');
 Route::delete('/delete-event-station/{eventstation}', [StationController::class, 'destroy'])->name('deleteEventStation');
+// Get Users
+Route::get('/getUsers', [StationController::class, 'getUsers'])->name('getUsers');
