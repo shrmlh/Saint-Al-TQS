@@ -40,10 +40,16 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        $middleInitial = $request->middleInitial;
+        if(empty($middleInitial)){
+            $middleInitial = "";
+        }
+        else{
+            $middleInitial .= ".";
+        }
         $user = User::create([
             'firstname' => strtoupper($request->firstname),
-            'middleInitial' => strtoupper($request->middleInitial),
+            'middleInitial' => strtoupper($middleInitial),
             'lastname' => strtoupper($request->lastname),
             'email' => $request->email,
             'role' => 3,
