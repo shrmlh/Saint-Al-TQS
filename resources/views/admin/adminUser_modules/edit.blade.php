@@ -34,7 +34,7 @@
                         <div class="col-sm-4 my-1">
                             <div class="form-group">
                                 <label for="middleInitial" class="col-form-label">Middle Initial</label>
-                                <input name="middleInitial" value="{{$user->middleInitial}}" maxlength="1" required class="form-control" type="text" id="middleInitial">
+                                <input name="middleInitial" value="{{$user->middleInitial}}" maxlength="1" class="form-control" type="text" id="middleInitial">
                             </div>
                         </div>
                         <div class="col-sm-4 my-1">
