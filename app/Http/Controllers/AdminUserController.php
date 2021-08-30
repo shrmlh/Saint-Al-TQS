@@ -45,10 +45,16 @@ class AdminUserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        $middleInitial = $request->middleInitial;
+        if(empty($middleInitial)){
+            $middleInitial = "";
+        }
+        else{
+            $middleInitial .= ".";
+        }
         User::create([
             'firstname' => strtoupper($request->firstname),
-            'middleInitial' => strtoupper($request->middleInitial).".",
+            'middleInitial' => strtoupper($middleInitial),
             'lastname' => strtoupper($request->lastname),
             'email' => $request->email,
             'role' => 2,
@@ -91,7 +97,7 @@ class AdminUserController extends Controller
     {
         $request->validate([
             'firstname' => 'required|string|max:30',
-            'middleInitial' => 'string|max:1',
+            'middleInitial' => 'max:1',
             'lastname' => 'required|string|max:30',
             'email' => [
                 'required','string','email','max:255',
@@ -99,10 +105,16 @@ class AdminUserController extends Controller
             ],
             'status' => 'boolean'
         ]);
-
+        $middleInitial = $request->middleInitial;
+        if(empty($middleInitial)){
+            $middleInitial = "";
+        }
+        else{
+            $middleInitial .= ".";
+        }
         $user->update([
             'firstname' => strtoupper($request->firstname),
-            'middleInitial' => strtoupper($request->middleInitial).".",
+            'middleInitial' => strtoupper($middleInitial),
             'lastname' => strtoupper($request->lastname),
             'email' => $request->email,
             'status' => $request->has('status')
