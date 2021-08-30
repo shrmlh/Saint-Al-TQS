@@ -17,6 +17,8 @@ class CreateStationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('event');
             $table->foreign('event')->references('id')->on('events')->onDelete('cascade');
+            $table->unsignedBigInteger('assigned_user')->nullable();
+            $table->foreign('assigned_user')->references('id')->on('users')->onDelete('set null');
             $table->string('station',150);
             $table->timestamps();
         });
