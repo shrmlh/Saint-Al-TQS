@@ -35,8 +35,14 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'firstname' => 'required|string|max:30',
-            'middleInitial' => 'string|max:1',
+            'middleInitial' => 'max:1',
             'lastname' => 'required|string|max:30',
+            'contactno' => 'required|digits:11|numeric',
+            'address'=>'required',
+            'birthday'=>'required|date',
+            'clubname'=>'max:30',
+            'plateno'=>'required|max:30',
+            'licenseno'=>'required|max:30',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -51,6 +57,12 @@ class RegisteredUserController extends Controller
             'firstname' => strtoupper($request->firstname),
             'middleInitial' => strtoupper($middleInitial),
             'lastname' => strtoupper($request->lastname),
+            'contactno' => $request->contactno,
+            'address'=> strtoupper($request->address),
+            'birthday'=> $request->birthday,
+            'clubname'=> $request->clubname,
+            'plateno'=> $request->plateno,
+            'licenseno'=> $request->licenseno,
             'email' => $request->email,
             'role' => 3,
             'password' => Hash::make($request->password),
