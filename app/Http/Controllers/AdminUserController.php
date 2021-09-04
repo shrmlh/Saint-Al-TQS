@@ -60,7 +60,7 @@ class AdminUserController extends Controller
             'middleInitial' => strtoupper($middleInitial),
             'lastname' => strtoupper($request->lastname),
             'contactno' => $request->contactno,
-            'address' => $request->address,
+            'address' => strtoupper($request->address),
             'birthday' => $request->birthday,
             'email' => $request->email,
             'role' => 2,
@@ -105,6 +105,9 @@ class AdminUserController extends Controller
             'firstname' => 'required|string|max:30',
             'middleInitial' => 'max:1',
             'lastname' => 'required|string|max:30',
+            'contactno' => 'required|digits:11|numeric',
+            'address'=>'required',
+            'birthday'=>'required|date',
             'email' => [
                 'required','string','email','max:255',
                 Rule::unique('users')->ignore($user->id),
@@ -122,6 +125,9 @@ class AdminUserController extends Controller
             'firstname' => strtoupper($request->firstname),
             'middleInitial' => strtoupper($middleInitial),
             'lastname' => strtoupper($request->lastname),
+            'contactno' => $request->contactno,
+            'address' => strtoupper($request->address),
+            'birthday' => $request->birthday,
             'email' => $request->email,
             'status' => $request->has('status')
         ]);

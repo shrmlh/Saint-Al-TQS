@@ -44,6 +44,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-6 my-1">
+                            <div class="form-group">
+                                <label for="contactno" class="col-form-label">Contact No.</label>
+                                <input name="contactno" value="{{$user->contactno}}" maxlength="11" required class="form-control" type="text" id="contactno">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 my-1">
+                            <div class="form-group">
+                                <label for="birthday" class="col-form-label">Birthday</label>
+                                <input name="birthday" value="{{$user->birthday}}" required class="form-control" type="date" id="birthday">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-12 my-1">
+                            <div class="form-group">
+                                <label for="address" class="col-form-label">Address</label>
+                                <input name="address" value="{{$user->address}}" required class="form-control" type="text" id="address">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="email" class="col-form-label">Email</label>
                         <input name="email" value="{{$user->email}}" required class="form-control" type="text" id="email">
