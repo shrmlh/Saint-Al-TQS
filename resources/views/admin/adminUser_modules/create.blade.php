@@ -42,6 +42,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-6 my-1">
+                            <div class="form-group">
+                                <label for="contactno" class="col-form-label">Contact No.</label>
+                                <x-input name="contactno" maxlength="11" required class="form-control" type="text" id="contactno" :value="old('contactno')"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 my-1">
+                            <div class="form-group">
+                                <label for="birthday" class="col-form-label">Birthday</label>
+                                <x-input name="birthday" required class="form-control" type="date" id="birthday" :value="old('birthday')"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-12 my-1">
+                            <div class="form-group">
+                                <label for="address" class="col-form-label">Address</label>
+                                <x-input name="address" required class="form-control" type="text" id="address" :value="old('address')"/>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="email" class="col-form-label">Email</label>
                         <x-input name="email" required class="form-control" type="text" id="email" :value="old('email')"/>

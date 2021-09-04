@@ -40,8 +40,11 @@ class AdminUserController extends Controller
     {
         $request->validate([
             'firstname' => 'required|string|max:30',
-            'middleInitial' => 'string|max:1',
+            'middleInitial' => 'max:1',
             'lastname' => 'required|string|max:30',
+            'contactno' => 'required|digits:11|numeric',
+            'address'=>'required',
+            'birthday'=>'required|date',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -56,6 +59,9 @@ class AdminUserController extends Controller
             'firstname' => strtoupper($request->firstname),
             'middleInitial' => strtoupper($middleInitial),
             'lastname' => strtoupper($request->lastname),
+            'contactno' => $request->contactno,
+            'address' => $request->address,
+            'birthday' => $request->birthday,
             'email' => $request->email,
             'role' => 2,
             'password' => Hash::make($request->password),
