@@ -151,6 +151,22 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'addMoreInputFields.*.station' => 'station',
+        'addMoreInputFields.*.assigned_user' => 'assigned personnel',
+        'addMoreInputFields.*.freebie' => 'freebie',
+        'addMoreInputFields.*.rule' => 'rule',
+        'assigned_user' => 'assigned personnel',
+        'middleInitial' => 'middle initial',
+        'contactno' => 'contact no.',
+        'clubname' => 'club name',
+        'plateno' => 'plate no.',
+        'licenseno' => 'license no.',
+        'reg_start' => 'start of registration',
+        'event_start' => 'start of event',
+        'event_end' => 'end of event',
+        'event_fee' => 'event fee',
+        'route_map' => 'route map',
+    ],
 
 ];
