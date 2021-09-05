@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Models\RiderGroup;
 
 class RegisteredUserController extends Controller
 {
@@ -40,7 +41,7 @@ class RegisteredUserController extends Controller
             'contactno' => 'required|digits:11|numeric',
             'address'=>'required',
             'birthday'=>'required|date',
-            'clubname'=>'max:30',
+            'clubname'=>'max:30|unique:rider_groups',
             'plateno'=>'required|max:30',
             'licenseno'=>'required|max:30',
             'email' => 'required|string|email|max:255|unique:users',
@@ -53,6 +54,11 @@ class RegisteredUserController extends Controller
         else{
             $middleInitial .= ".";
         }
+
+        $clubid = RiderGroup::insertGetId(
+            ['clubname' => $request->clubname]
+        );
+        
         $user = User::create([
             'firstname' => strtoupper($request->firstname),
             'middleInitial' => strtoupper($middleInitial),
@@ -60,7 +66,7 @@ class RegisteredUserController extends Controller
             'contactno' => $request->contactno,
             'address'=> strtoupper($request->address),
             'birthday'=> $request->birthday,
-            'clubname'=> $request->clubname,
+            'club'=> $clubid,
             'plateno'=> $request->plateno,
             'licenseno'=> $request->licenseno,
             'email' => $request->email,

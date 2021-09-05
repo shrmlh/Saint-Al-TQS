@@ -23,7 +23,7 @@ class User extends Authenticatable
         'contactno',
         'address',
         'birthday',
-        'clubname',
+        'club',
         'plateno',
         'licenseno',
         'email',

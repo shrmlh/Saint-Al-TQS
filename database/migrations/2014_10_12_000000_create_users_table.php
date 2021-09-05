@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('contactno',11);
             $table->text('address');
             $table->date('birthday');
-            $table->string('clubname',30)->nullable();
+            $table->unsignedBigInteger('club')->nullable()->unique();
+            $table->foreign('club')->references('id')->on('rider_groups');
             $table->string('plateno',30)->nullable();
             $table->string('licenseno',30)->nullable()->unique();
             $table->string('email')->unique();
