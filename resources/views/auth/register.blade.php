@@ -50,7 +50,7 @@
                         <div class="col-sm-6 my-1">
                             <div class="form-group">
                                 <label for="contactno">Contact No.</label>
-                                <x-input type="text" class="form-control" id="contactno" name="contactno"
+                                <x-input type="text" class="form-control" maxLength="11" id="contactno" name="contactno"
                                     :value="old('contactno')" required placeholder="Enter Contact No."/>
                             </div>
                         </div>

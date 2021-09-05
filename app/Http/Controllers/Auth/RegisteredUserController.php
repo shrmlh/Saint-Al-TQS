@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             'birthday'=>'required|date',
             'clubname'=>'max:30|unique:rider_groups',
             'plateno'=>'required|max:30',
-            'licenseno'=>'required|max:30',
+            'licenseno'=>'required|max:30|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -55,9 +55,13 @@ class RegisteredUserController extends Controller
             $middleInitial .= ".";
         }
 
-        $clubid = RiderGroup::insertGetId(
-            ['clubname' => $request->clubname]
-        );
+        $clubname = $request->clubname;
+        $clubid = null;
+        if(!empty($clubname)){
+            $clubid = RiderGroup::insertGetId(
+                ['clubname' => $clubname, 'created_at' => now(),'updated_at' => now()]
+            );
+        }
         
         $user = User::create([
             'firstname' => strtoupper($request->firstname),
