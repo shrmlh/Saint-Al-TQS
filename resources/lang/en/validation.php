@@ -167,6 +167,17 @@ return [
         'event_end' => 'end of event',
         'event_fee' => 'event fee',
         'route_map' => 'route map',
+        'addMoreInputFields.*.firstname' => 'firstname',
+        'addMoreInputFields.*.middleInitial' => 'middle initial',
+        'addMoreInputFields.*.lastname' => 'lastname',
+        'addMoreInputFields.*.contactno' => 'contact no.',
+        'addMoreInputFields.*.address'=>'address',
+        'addMoreInputFields.*.birthday'=>'birthday',
+        'addMoreInputFields.*.plateno'=>'plate no.',
+        'addMoreInputFields.*.licenseno'=>'license no.',
+        'addMoreInputFields.*.email' => 'email',
+        'addMoreInputFields.*.password' => 'password',
+        'addMoreInputFields.*.password_confirmation' => 'password confirmation',
     ],
 
 ];
