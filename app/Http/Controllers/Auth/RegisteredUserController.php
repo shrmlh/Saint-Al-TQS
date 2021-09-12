@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\RiderGroup;
-
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 class RegisteredUserController extends Controller
 {
     /**
@@ -34,54 +35,59 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'firstname' => 'required|string|max:30',
-            'middleInitial' => 'max:1',
-            'lastname' => 'required|string|max:30',
-            'contactno' => 'required|digits:11|numeric',
-            'address'=>'required',
-            'birthday'=>'required|date',
-            'clubname'=>'max:30|unique:rider_groups',
-            'plateno'=>'required|max:30',
-            'licenseno'=>'required|max:30|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        $validator = Validator::make($request->all(), [
+            'addMoreInputFields.*.firstname' => 'required|string|max:30',
+            'addMoreInputFields.*.middleInitial' => 'max:1',
+            'addMoreInputFields.*.lastname' => 'required|string|max:30',
+            'addMoreInputFields.*.contactno' => 'required|digits:11|numeric',
+            'addMoreInputFields.*.address'=>'required',
+            'addMoreInputFields.*.birthday'=>'required|date',
+            'addMoreInputFields.*.plateno'=>'required|max:30',
+            'addMoreInputFields.*.licenseno'=>'required|max:30|distinct|unique:users',
+            'addMoreInputFields.*.email' => 'required|string|email|max:255|distinct|unique:users',
+            'addMoreInputFields.*.password' => ['required', 'confirmed', 'min:8'],
         ]);
-        $middleInitial = $request->middleInitial;
-        if(empty($middleInitial)){
-            $middleInitial = "";
-        }
-        else{
-            $middleInitial .= ".";
-        }
-
-        $clubname = $request->clubname;
-        $clubid = null;
-        if(!empty($clubname)){
-            $clubid = RiderGroup::insertGetId(
-                ['clubname' => $clubname, 'created_at' => now(),'updated_at' => now()]
-            );
-        }
         
-        $user = User::create([
-            'firstname' => strtoupper($request->firstname),
-            'middleInitial' => strtoupper($middleInitial),
-            'lastname' => strtoupper($request->lastname),
-            'contactno' => $request->contactno,
-            'address'=> strtoupper($request->address),
-            'birthday'=> $request->birthday,
-            'club'=> $clubid,
-            'plateno'=> $request->plateno,
-            'licenseno'=> $request->licenseno,
-            'email' => $request->email,
-            'role' => 3,
-            'password' => Hash::make($request->password),
-        ]);
+        if(count($request->addMoreInputFields)>1){
+            $validator->sometimes('clubname', 'required|max:30|unique:rider_groups', function($input) {
+                return $input;
+            });
+        }
+    
+         if ($validator->passes()) {
+       
+             $clubname = $request->clubname;
+             $clubid = null;
+             if (!empty($clubname) && count($request->addMoreInputFields)>1) {
+                 $clubid = RiderGroup::insertGetId(
+                     ['clubname' => $clubname, 'created_at' => now(),'updated_at' => now()]
+                 );
+             }
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+             foreach ($request->addMoreInputFields as $key => $value) {
+                $middleInitial = $request->addMoreInputFields[$key]["middleInitial"];
+                if (empty($middleInitial)) {
+                    $middleInitial = "";
+                } else {
+                    $middleInitial .= ".";
+                }
+                 User::create([
+                    'firstname' => strtoupper($request->addMoreInputFields[$key]["firstname"]),
+                    'middleInitial' => strtoupper($middleInitial),
+                    'lastname' => strtoupper($request->addMoreInputFields[$key]["lastname"]),
+                    'contactno' => $request->addMoreInputFields[$key]["contactno"],
+                    'address'=> strtoupper($request->addMoreInputFields[$key]["address"]),
+                    'birthday'=> $request->addMoreInputFields[$key]["birthday"],
+                    'club'=> $clubid,
+                    'plateno'=> $request->addMoreInputFields[$key]["plateno"],
+                    'licenseno'=> $request->addMoreInputFields[$key]["licenseno"],
+                    'email' => $request->addMoreInputFields[$key]["email"],
+                    'role' => 3,
+                    'password' => Hash::make($request->addMoreInputFields[$key]["password"]),
+                ]);
+            }
+            return response()->json(['success'=>'Account/s created successfully.']);
+         }
+         return response()->json(['error'=>$validator->errors()]);
     }
 }
