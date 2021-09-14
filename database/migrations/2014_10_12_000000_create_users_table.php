@@ -32,6 +32,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->boolean('status')->default(1);
+            $table->string('membership_payment')->nullable();
+            $table->boolean('is_member')->default(0);
             $table->timestamps();
         });
 

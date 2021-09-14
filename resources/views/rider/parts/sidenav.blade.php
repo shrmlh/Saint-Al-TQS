@@ -31,6 +31,16 @@
                                     <li class="nav-item"><a href="themify.html">Rider Groups</a></li>
                                 </ul>
                             </li>
+                            <li class="nav-item text-center text-white">
+                                Membership: 
+                                @if(Auth::user()->is_member) 
+                                    <span class="text-success">
+                                @else
+                                    <span class="text-danger">
+                                @endif
+                                {{Auth::user()->is_member ? "Verified":"Unverified"}}
+                                    </span>
+                            </li>
                             <li></li>
                         </ul>
                     </nav>

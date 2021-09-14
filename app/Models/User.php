@@ -27,6 +27,7 @@ class User extends Authenticatable
         'plateno',
         'licenseno',
         'email',
+        'membership_payment',
         'role',
         'status',
         'password',

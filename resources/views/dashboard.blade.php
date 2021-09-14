@@ -20,8 +20,12 @@
         <div class="card">
             <div class="card-body">
                 <div class="alert-items">
-                    <div class="alert alert-success" role="alert">
-                        <strong>Well done!</strong> You successfully read this important alert message.
+                    
+                    <div class="alert alert-warning" role="alert">
+                        @if (!Auth::user()->is_member)
+                            Your are not yet an official member of CR1M. 
+                            <a href="" class="text-warning"><strong>Verify here.</strong></a>
+                        @endif
                     </div>
                 </div>
             </div>
