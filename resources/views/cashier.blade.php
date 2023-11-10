@@ -19,12 +19,16 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-
+<style>
+    #uni_modal .modal-footer{
+        display:none;
+    }
+</style>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title')</title>
+    <title>CR1M - @yield('title')</title>
     
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/icon/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -45,106 +49,55 @@
     <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
     @yield('customstyle')
     </head>
-
-
-<!-- functions -->
-@php
-    use App\Models\Queue;
-    use Illuminate\Support\Facades\DB;
-    use Carbon\Carbon;
-
-    $today = Carbon::today();
-    
-
-    //$CQ = Queue::count('queue_no');
-
-    $CQ = Queue::whereIn('status', [0,1,2,3])->whereDate('created_at', $today)->where(function($query) {
-        $query->where('queue_no', 'LIKE', '%C%');
-    })->count();
-
-    $CQ_no = $CQ + 1;
-   
-    
-@endphp
-<!-- functions -->
-
-
-
-
-
-
-
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-                    @endauth
-                    <a href="{{ route('display_monitor') }}" class="ml-4 text-sm text-gray-700 underline">Live Monitoring</a>
-                </div>
-            @endif
-
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0"  style="text-align:">
-                    <img src="http://127.0.0.1:8000/appimages/events/logo2.webp" alt="logo" width="400" height="400">
+                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                 </div>
 
-
-<br><br><br>
-                <h1>SELECT TRANSACTION</h1>
+                <h1>Get your Queue Number Here</h1>
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-2">
-                            <div class="flex items-center">
-                                <a href="{{ route('registrar') }}" class="btn btn-primary btn-lg btn-block" style="background-color:#000435">REGISTRAR</a>
-                            </div>
-                        </div>
-
-                        <div class="p-2 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                            <div class="flex items-center">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#getQueue" style="background-color:#000435">CASHIER</button>
-                                 <!-- Modal start -->
-                                 
-                                    <div class="modal fade" id="getQueue" aria-hidden="true" style="display: none;">
-                                        <div class="modal-dialog modal-dialog-centered" role="document" style="text-align: center" id="outprint">
-                                            <div class="modal-content" id="myDiv">
-                                                <div class="modal-header">
-                                                    <img src="http://127.0.0.1:8000/appimages/events/logo2.webp" alt="logo" width="400" height="400">
-                                                    <!-- <button type="button" class="close" data-dismiss="modal"><span>×</span></button> -->
-                                                </div>
-
-                                                <form action="{{ route('storeQueue') }}" method="POST" enctype="multipart/form-data" id="printForm">
-                                                @csrf
-                                                    <div class="modal-body">
-                                                        <h6 class="modal-title">Priority No.</h6>
-                                                        <div class="form-group">
-                                                            <h1 type="text">C{{$CQ_no}}</h1>
-                                                            <input name="queue_no" required type="text" id="queue_no" value="C{{$CQ_no}}" style="display: none;"></input>
-                                                            <input name="transaction" required type="text" id="transaction" value="CASHIER" style="display: none;"></input>
-                                                            <span id="currentDateTime"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-primary" id="print">Okay</button>
-                                                    </div>
-                                                </form>
+                    <div class="grid grid-cols-1 md:grid-cols-1">
+                        @include('admin.parts.flash-message')
+                        
+                        
+                        <form action="{{ route('storeCashierQueue') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                            <label for="example-text-input" class="col-form-label">Enter Student ID</label>
+                            <input class="form-control" name="student_id" required type="text" id="student_id">
+                            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#getQueue">Get Queue</button>
+                            <!-- Modal start -->
+                            <div class="modal fade" id="getQueue" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content" id="outprint">
+                                        <div class="modal-header">
+                                            <img src="http://127.0.0.1:8000/appimages/events/logo2.webp" alt="logo" width="400" height="400">
+                                            <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h5 class="modal-title">Your Queue</h5>
+                                            <div class="form-group">
+                                                <h1>0001</h1>
+                                                <label for="example-text-input" class="col-form-label">Student ID: </label>
                                             </div>
                                         </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-primary" id="print">Print</button>
+                                        </div>
                                     </div>
-                                <!-- Modal end --> 
+                                </div>
                             </div>
-                        </div>
+                            <!-- Modal end -->    
+                        </form>
 
-                             
+                        
+                            
+                        
+                        
                     </div>
                 </div>
-                @include('admin.parts.flash-message')
 
-                
             </div>
         </div>
 
@@ -162,38 +115,15 @@
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/scripts.js"></script>
 
-    <!-- DATE AND TIME -->
-<script type="text/javascript">
-    function updateDateTime() {
-        var currentDateTime = new Date();
-        var formattedDateTime = currentDateTime.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }); // I-convert ang oras at petsa sa isang pormat na mababasa
-
-        document.getElementById("currentDateTime").textContent = formattedDateTime;
-    }
-
-    // Tumawag sa updateDateTime() upang simulan ang pag-update ng oras at petsa
-    updateDateTime();
-
-    // I-update ang oras at petsa tuwing 1 segundo
-    setInterval(updateDateTime, 1000);
-
-</script>
-<script>
- // Listen for form submission
- document.getElementById("printForm").addEventListener("submit", function(event) {
-        if (!window.confirm("Do you want to print and submit this form?")) {
-            event.preventDefault(); // Prevent the form from being submitted
-        }
-        else{
+    <script>
+    $(function(){
+        $('#print').click(function(){
             var _el = $('<div>')
             var _h = $('head').clone()
             var _p = $('#outprint').clone()
             _h.find('title').text("Queue Number - Print")
             _el.append(_h)
-            
-            var _modalContent = $('#getQueue').clone()
-            _modalContent.find('.modal-footer').hide()
-            _el.append(_modalContent)
+            _el.append(_p)
             var nw = window.open('','_blank','width=700,height=500,top=75,left=200')
                 nw.document.write(_el.html())
                 nw.document.close()
@@ -201,35 +131,11 @@
                     nw.print()
                     setTimeout(() => {
                         nw.close()
-                        $('#getQueue').modal('hide')
+                        $('#uni_modal').modal('hide')
                     }, 200);
                 }, 500);
-
-            // var _modalContent = $('#getQueue').clone();
-            // _modalContent.find('.modal-footer').hide();
-
-            // // Create a new HTML document for printing
-            // var printDocument = document.implementation.createHTMLDocument('Print Document');
-            // var printBody = printDocument.body;
-
-            // // Append the cloned content to the new HTML document
-            // printBody.appendChild(_modalContent[0]);
-
-            // var nw = window.open('', '_blank', 'width=700,height=500,top=75,left=200');
-            // // nw.document.write('<html><head><title>Print Page</title></head><body>' + printBody.innerHTML + '</body></html>');
-            // nw.document.write(printBody.innerHTML);
-            // nw.document.close();
-
-            // // Wait for the content to load, then print
-            // nw.onload = function () {
-            //     nw.print();
-            //     nw.close();
-            // };
-        }
-    });
+        })
+    })
 </script>
-
-
-
     </body>
 </html>

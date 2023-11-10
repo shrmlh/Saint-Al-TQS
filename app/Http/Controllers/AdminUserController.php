@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
+
 class AdminUserController extends Controller
 {
     /**
@@ -44,9 +46,15 @@ class AdminUserController extends Controller
             'lastname' => 'required|string|max:30',
             'contactno' => 'required|digits:11|numeric',
             'address'=>'required',
-            'birthday'=>'required|date',
+            'birthday' => [
+                'required',
+                'date',
+                'before_or_equal:' . Carbon::now()->subYears(18)->format('Y-m-d'),
+                'after_or_equal:' . Carbon::now()->subYears(100)->format('Y-m-d'),
+            ],
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role'=>'required'
         ]);
         $middleInitial = $request->middleInitial;
         if(empty($middleInitial)){
@@ -63,7 +71,8 @@ class AdminUserController extends Controller
             'address' => strtoupper($request->address),
             'birthday' => $request->birthday,
             'email' => $request->email,
-            'role' => 2,
+            // 'role' => $request->role,
+            'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
 
@@ -107,12 +116,18 @@ class AdminUserController extends Controller
             'lastname' => 'required|string|max:30',
             'contactno' => 'required|digits:11|numeric',
             'address'=>'required',
-            'birthday'=>'required|date',
+            'birthday' => [
+                'required',
+                'date',
+                'before_or_equal:' . Carbon::now()->subYears(18)->format('Y-m-d'),
+                'after_or_equal:' . Carbon::now()->subYears(100)->format('Y-m-d'),
+            ],
             'email' => [
                 'required','string','email','max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
-            'status' => 'boolean'
+            'status' => 'boolean',
+            'role' => 'required'
         ]);
         $middleInitial = $request->middleInitial;
         if(empty($middleInitial)){
@@ -129,9 +144,10 @@ class AdminUserController extends Controller
             'address' => strtoupper($request->address),
             'birthday' => $request->birthday,
             'email' => $request->email,
-            'status' => $request->has('status')
+            'status' => $request->has('status'),
+            'role' => $request->role
         ]);
-        return redirect()->route('userAdminList')->with('success','User updated successfully');
+        return redirect()->route('registrar_user')->with('success','User updated successfully');
     }
 
     /**

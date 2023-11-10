@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Event')
+@section('title', 'Edit User')
 
 @section('pagetitle')
 <div class="col-sm-6">
@@ -8,7 +8,7 @@
         <h4 class="page-title pull-left">Edit User</h4>
         <ul class="breadcrumbs pull-left">
             <li><a href="{{ route('admin') }}">Home</a></li>
-            <li><a href="{{ route('userAdminList') }}">List of Users</a></li>
+            <li><a href="{{ route('registrar_user') }}">List of Users</a></li>
             <li><span>Edit User</span></li>
         </ul>
     </div>
@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+<div class="row" style="background-color: white;">
     <div class="col-12 mt-5">
         <div class="card">
             <div class="card-body">
@@ -71,9 +71,42 @@
                         <input name="email" value="{{$user->email}}" required class="form-control" type="text" id="email">
                     </div>
                     <div class="form-group">
+                        <label for="email" class="col-form-label">Position</label> <br/>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="role1" name="customRadio2" class="custom-control-input" data-role-number="1" @if ($user->role == 1) checked @endif>
+                            <label class="custom-control-label" for="role1">Registrar</label>
+                        </div>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="role2" name="customRadio2" class="custom-control-input" data-role-number="2" @if ($user->role == 2) checked @endif>
+                            <label class="custom-control-label" for="role2">Cashier</label>
+                        </div>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var radioButtons = document.querySelectorAll('input[type="radio"]');
+                                var roleNumberTextbox = document.getElementById('role');
+                                
+                                radioButtons.forEach(function (radioButton) {
+                                    radioButton.addEventListener('change', function () {
+                                        if (this.checked) {
+                                            var roleNumber = this.getAttribute('data-role-number');
+                                            // Isasalaysay ang role number sa text box
+                                            roleNumberTextbox.value = roleNumber;
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                        <input type="text" id="role" name="role" value="{{ $user->role }}" style="display: none" >
+                        
+                    </div>
+                    
+                    <div class="form-group">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="status" name="status" value="1" {{ $user->status ? 'checked' : '' }}>
-                            <label class="custom-control-label" for="status">Status</label>
+                            <label class="custom-control-label" for="status">Active</label>
                         </div>
                     </div>
                     <div class="form-group mt-3">

@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\StudentTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +27,13 @@ Route::group(['middleware'=>['auth', 'admin', 'prevent-back-history']], function
         return view('admin.dashboard');
     })->name('admin');
 
-    require __DIR__.'/admin/events.php';
-    require __DIR__.'/admin/eventrules.php';
-    require __DIR__.'/admin/eventfreebies.php';
-    require __DIR__.'/admin/eventstations.php';
+    // require __DIR__.'/admin/events.php';
+    // require __DIR__.'/admin/eventrules.php';
+    // require __DIR__.'/admin/eventfreebies.php';
+    // require __DIR__.'/admin/eventstations.php';
     require __DIR__.'/admin/useradmin.php';
-    require __DIR__.'/admin/rideruser.php';
+    // require __DIR__.'/admin/rideruser.php';
+    require __DIR__.'/admin/registrar.php';
 });
 
 Route::group(['middleware'=>['auth', 'rider', 'prevent-back-history']], function () {
@@ -41,3 +43,6 @@ Route::group(['middleware'=>['auth', 'rider', 'prevent-back-history']], function
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/student_transaction/registrar.php';
+
+// Route::post('/call-servingQ', [StudentTransactionController::class, 'servingQ'])->name('call-servingQ');

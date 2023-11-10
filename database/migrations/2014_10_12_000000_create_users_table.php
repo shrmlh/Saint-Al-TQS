@@ -22,26 +22,26 @@ class CreateUsersTable extends Migration
             $table->string('contactno',11);
             $table->text('address');
             $table->date('birthday');
-            $table->unsignedBigInteger('club')->nullable();
-            $table->foreign('club')->references('id')->on('rider_groups');
-            $table->string('plateno',30)->nullable();
-            $table->string('licenseno',30)->nullable()->unique();
+            // $table->unsignedBigInteger('club')->nullable();
+            // $table->foreign('club')->references('id')->on('rider_groups');
+            // $table->string('plateno',30)->nullable();
+            // $table->string('licenseno',30)->nullable()->unique();
             $table->string('email')->unique();
             $table->unsignedBigInteger('role');
             $table->foreign('role')->references('id')->on('user_roles');
             $table->string('password');
             $table->rememberToken();
             $table->boolean('status')->default(1);
-            $table->string('membership_payment')->nullable();
-            $table->boolean('is_member')->default(0);
+            // $table->string('membership_payment')->nullable();
+            // $table->boolean('is_member')->default(0);
             $table->timestamps();
         });
 
         DB::table('users')->insert( array(
             array(
-            "firstname" => "Brynpryl", 
-            "middleInitial" => "P.", 
-            "lastname" => "Bandiola", 
+            "firstname" => "Sharmelah", 
+            "middleInitial" => "J.", 
+            "lastname" => "Esquibel", 
             "contactno"=> "09123456789",
             "address" => "Koronadal City",
             "birthday" => "1999/04/26",

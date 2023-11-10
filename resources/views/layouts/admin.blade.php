@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CR1M - @yield('title')</title>
+    <title>TQS - @yield('title')</title>
     
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/icon/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -27,7 +27,7 @@
     @yield('customstyle')
 </head>
 
-<body>
+<body >
 
     <div id="preloader">
         <div class="loader"></div>
@@ -37,13 +37,13 @@
 
         @include('admin.parts.sidenav')
         
-        <div class="main-content">
+        <div class="main-content"  >
 
             @include('admin.parts.header')
             
             @include('admin.parts.pagetitle')
 
-            <div class="main-content-inner">
+            <div class="main-content-inner"  style="background-color: white;">
 
                     @yield('content')
                 

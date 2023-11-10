@@ -80,8 +80,8 @@
 }
 
 .card-body {
-    padding: 25.6px;
-    padding: 1.6rem;
+    padding: 20.6px;
+    padding: 0.8rem;
 }
 
 .h-full {
@@ -90,11 +90,11 @@
 
 .main-content {
     width: 100%;
-    background: #F3F8FB;
+    background: #ffffff;
 }
 
 .main-content-inner {
-    padding: 0 30px 50px;
+    padding: 0 10px 10px 10px;
 }
 
 /*------------------------- END Core Css -------------------*/
@@ -232,7 +232,7 @@
 /*-------------------- 2.1.1 Horizontal Menu -------------------*/
 
 .body-bg {
-    background: #F3F8FB;
+    background: #ffffff;
 }
 
 .horizontal-main-wrapper {

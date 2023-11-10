@@ -83,9 +83,20 @@ return [
     |
     */
 
+    // 'stream' => [x
+    //     'ssl'=>[
+
+    //     'allow_self_signed=>true, 
+    //     'verify_peer'=>false,
+    //     'verify_peer_name'=>false,
+    //     ],
+    // ],
+
+    
+
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'saintalexius46@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Transaction Queueing System St. Alexius'),
     ],
 
     /*

@@ -59,59 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-row align-items-center">
-                        <div class="col-sm-6 my-1">
-                            <div class="form-group">
-                                <label for="contactno">Contact No.</label>
-                                <x-input type="text" class="form-control" maxLength="11" id="contactno" name="addMoreInputFields[0][contactno]"
-                                    :value="old('contactno')" required placeholder="Enter Contact No."/>
-                                <span class="text-danger error-text addMoreInputFields0contactno_err">&nbsp;</span>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 my-1">
-                            <div class="form-group">
-                                <label for="birthday">Birthday</label>
-                                <x-input type="date" class="form-control" id="birthday" name="addMoreInputFields[0][birthday]"
-                                    :value="old('birthday')" required/>
-                                <span class="text-danger error-text addMoreInputFields0birthday_err">&nbsp;</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row align-items-center">
-                        <div class="col-sm-12 my-1">
-                            <div class="form-group">
-                                <label for="address" class="col-form-label">Address</label>
-                                <x-input name="addMoreInputFields[0][address]" required class="form-control" type="text" id="address" placeholder="Enter Address" :value="old('address')"/>
-                                <span class="text-danger error-text addMoreInputFields0address_err">&nbsp;</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row align-items-center">
-                        <div class="col-sm-4 my-1">
-                            <div class="form-group">
-                                <label for="firstname">Club Name</label>
-                                <x-input type="text" maxLength="30" class="form-control" id="clubname" name="clubname"
-                                    :value="old('clubname')" placeholder="Enter Club Name (Leave Blank if None)"/>
-                                <span class="text-danger error-text clubname_err">&nbsp;</span>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 my-1">
-                            <div class="form-group">
-                                <label for="plateno">Plate No.</label>
-                                <x-input type="text" maxLength="30" class="form-control" id="plateno" name="addMoreInputFields[0][plateno]"
-                                    :value="old('plateno')" required placeholder="Enter Plate No."/>
-                                <span class="text-danger error-text addMoreInputFields0plateno_err">&nbsp;</span>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 my-1">
-                            <div class="form-group">
-                                <label for="licenseno">License No.</label>
-                                <x-input type="text" class="form-control" id="licenseno" name="addMoreInputFields[0][licenseno]"
-                                    :value="old('licenseno')" maxLength="30" required placeholder="Enter License No."/>
-                                <span class="text-danger error-text addMoreInputFields0licenseno_err">&nbsp;</span>
-                            </div>
-                        </div>
-                    </div>
+                    
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <x-input type="email" class="form-control" name="addMoreInputFields[0][email]" :value="old('email')" required id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
@@ -138,9 +86,9 @@
                             <div class="col-sm-12 my-1">
                                 <button class="btn btn-flat btn-outline-primary w-100" id="form_submit" type="button">Register <i class="ti-arrow-right"></i></button>
                             </div>
-                            <div class="col-sm-12 my-1">
+                            <!-- <div class="col-sm-12 my-1">
                                 <button class="btn btn-flat btn-outline-secondary w-100" type="button" data-toggle="modal" data-target="#registerModal" id="anothermember">Add Member <i class="ti-plus"></i></button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </form>

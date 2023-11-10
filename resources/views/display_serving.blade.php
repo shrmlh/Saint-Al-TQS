@@ -20,58 +20,91 @@
             }
         </style>
 
-    <meta charset="UTF-8">  
+
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-</head>
+    
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/icon/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/metisMenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slicknav.min.css') }}">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/typography.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/default-css.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mystyle.css') }}">
+    <!-- modernizr css -->
+    <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    @yield('customstyle')
+    </head>
 
-<body class="antialiased" style="justify-content: center;">
-<x-guest-layout>
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
 
-<div class="row" >
-    <div class="col-4 mt-5">
-    </div>
-    <div class="col-4 mt-5" style="text-align:center; justify-content: center;">
-        <div class="card">
-            <div class="card-body">
-                <img src="http://127.0.0.1:8000/appimages/events/logo2.webp" alt="logo" width="300" height="300">
-            </div>
-            <div class="card-body">
-                <form method="POST" action="{{ route('password.email') }}" class="pt-3">
-                    @csrf
-                        <h4>Forgot your password? No problem.</h4>
-                        <p>Just let us know your email address and we will email you a password reset link.</p>
-                    <div class="login-form-body">
-                    <!-- Session Status -->
-                    <div class="text-danger">
-                        <x-auth-session-status class="pt-1" :status="session('status')" />
+<!-- functions -->
+@php
+use App\Models\Queue;
+    use Illuminate\Support\Facades\DB;
+    use Illuminate\Support\Facades\Auth;
+    use Carbon\Carbon;
 
-                        <!-- Validation Errors -->
-                        <x-auth-validation-errors class="pb-4" :errors="$errors" />
-                    </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <x-input type="email" class="form-control" name="email" :value="old('email')" required id="email" autofocus aria-describedby="emailHelp" placeholder="Enter email"/>
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your
-                                email with anyone else.</small>
-                        </div>
-                        <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">Email Password Reset Link <i class="ti-arrow-right"></i></button>
-                        </div>
-                        
-                    </div>
-                </form>
+    $today = Carbon::today();
+
+    //$data = Queue::where('status', '==', 0)->whereDate('created_at', $today)->get();
+    $data = Queue::where('status', '==', 0)->where('transaction', '!=', 'CASHIER')->whereDate('created_at', $today)->get();
+    $dataC = Queue::where('status', '==', 0)->where('transaction', '=', 'CASHIER')->whereDate('created_at', $today)->get();
+    $dataS = Queue::where('status', 1)->whereDate('created_at', $today)->get();
+    
+    $firstItem = Queue::where('status', 1)->whereDate('created_at', $today)->orderBy('updated_at', 'desc')->first();
+    
+@endphp
+<!-- functions -->
+
+
+
+
+        <div class="col-sm-12">
+                <div class="grid-col" id="refreshable-div">
+                    <h2>NOW SERVING</h2>
+                    @if ($dataS->isEmpty())
+                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"  id="ServingQ"><h1>---</h1></button>
+                    @else
+                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block" id="queue-number"><h1>{{ $firstItem->queue_no }}</h1></button>
+                    @endif
+
+                </div>
+                <div class="grid-col">
+                    <h2>PROCEED TO</h2>
+                    @if ($dataS->isEmpty())
+                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"><h1>---</h1></button>
+                    @else
+                        @if ($firstItem->transaction == "CASHIER")
+                            <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"><h1>CASHIER</h1></button>
+                        @else
+                            <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"><h1>REGISTRAR</h1></button>
+                        @endif
+                    @endif
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-4 mt-5">
-    </div>
-</div> 
-</x-guest-layout>
 
-</body>
+    <!-- jquery latest version -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- others plugins -->
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
 </html>
