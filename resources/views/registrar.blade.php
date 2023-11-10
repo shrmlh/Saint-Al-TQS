@@ -256,13 +256,13 @@
             var nw = window.open('','_blank','width=700,height=500,top=75,left=200')
                 nw.document.write(_el.html())
                 nw.document.close()
-                setTimeout(() => {
-                    nw.print()
-                    setTimeout(() => {
-                        nw.close()
-                        $('#Modal1').modal('hide')
-                    }, 200);
-                }, 500);
+                // setTimeout(() => {
+                //     nw.print()
+                //     setTimeout(() => {
+                //         nw.close()
+                //         $('#Modal1').modal('hide')
+                //     }, 200);
+                // }, 500);
                 // nw.print()
                 //     setTimeout(() => {
                 //         nw.close()
@@ -291,13 +291,13 @@
             var nw = window.open('','_blank','width=700,height=500,top=75,left=200')
                 nw.document.write(_el.html())
                 nw.document.close()
-                setTimeout(() => {
-                    nw.print()
-                    setTimeout(() => {
-                        nw.close()
-                        $('#Modal2').modal('hide')
-                    }, 200);
-                }, 500);
+                // setTimeout(() => {
+                //     nw.print()
+                //     setTimeout(() => {
+                //         nw.close()
+                //         $('#Modal2').modal('hide')
+                //     }, 200);
+                // }, 500);
         }
     });
 </script>
@@ -321,13 +321,13 @@
             var nw = window.open('','_blank','width=700,height=500,top=75,left=200')
                 nw.document.write(_el.html())
                 nw.document.close()
-                setTimeout(() => {
-                    nw.print()
-                    setTimeout(() => {
-                        nw.close()
-                        $('#Modal3').modal('hide')
-                    }, 200);
-                }, 500);
+                // setTimeout(() => {
+                //     nw.print()
+                //     setTimeout(() => {
+                //         nw.close()
+                //         $('#Modal3').modal('hide')
+                //     }, 200);
+                // }, 500);
         }
     });
 </script>

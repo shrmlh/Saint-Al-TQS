@@ -79,7 +79,7 @@
         <div class="header-title"><span id="currentDateTime"></span></div>
         
         <div class="row no-gutters">
-            <div class="col-sm-7">
+            <div class="col-sm-6">
                 <div class="grid-col">
                     <video controls width="640" height="360" autoplay loop>
                         <source src="{{ asset('storage/videos/myvideo.mp4') }}" type="video/mp4">
@@ -87,13 +87,13 @@
                     </video>
                 </div>
             </div>
-            <div class="col-sm-5" id="refreshable-div">
-                <div class="grid-col" id="refreshable-div">
+            <div class="col-sm-6" id="refreshable-div">
+                <!-- <div class="grid-col" >
                     <h2>NOW SERVING</h2>
                     @if ($dataS->isEmpty())
                         <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"  id="ServingQ"><h1>---</h1></button>
                     @else
-                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block" id="queue-number"><h1>{{ $firstItem->queue_no }}</h1></button>
+                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block" id="queue-number" ><h1>{{ $firstItem->queue_no }}</h1></button>
                     @endif
                 </div>
                 <div class="grid-col">
@@ -107,13 +107,13 @@
                             <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"><h1>REGISTRAR</h1></button>
                         @endif
                     @endif
-                </div>
+                </div> -->
                     
             </div>
         </div>
 
         <div class="row no-gutters" id="refreshable-div1">
-            <div class="col-sm-10">
+            <!-- <div class="col-sm-10">
                 <h4>UPCOMING</h4>
                     <div class="single-table">
                         <div class="table-responsive">
@@ -165,7 +165,7 @@
                             </table>
                         </div>
                     </div>
-            </div>
+            </div> -->
         </div>
         
 

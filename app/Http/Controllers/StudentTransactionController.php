@@ -99,13 +99,13 @@ class StudentTransactionController extends Controller
         // // return view('welcome')->with('success','Event created successfully.');
         // return redirect('/');
 
-        $servingTime = Carbon::now();
+        // $servingTime = Carbon::now();
         $userID = Auth::id();
 
         $queue = Queue::find($request->input('id'));
         $queue->status = 2;
         $queue->employeeID = $userID;
-        $queue->serving_time = $servingTime;
+        $queue->serving_time = $request->timerLabelInput;
         $queue->save();
 
         return redirect()->back()->with('success', 'Queue Updated.');
@@ -120,7 +120,7 @@ class StudentTransactionController extends Controller
         $queue = Queue::find($request->input('id'));
         $queue->status = 3;
         $queue->employeeID = $userID;
-        $queue->serving_time = null;
+        $queue->serving_time = $request->timerLabelInput;
         $queue->save();
 
         return redirect()->back()->with('danger', 'Queue marked as no show.');

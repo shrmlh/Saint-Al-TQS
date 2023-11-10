@@ -79,7 +79,7 @@
                                 <tbody>
                                     @if ($dataR->isEmpty())
                                         <tr>
-                                            <td>---</td>
+                                            <td font-weight: bold;>---</td>
                                         </tr>
                                     @else
                                         <tr>
@@ -93,7 +93,7 @@
                                     @endif
                                     @if ($dataC->isEmpty())
                                         <tr>
-                                            <td>No item.</td>
+                                            <td font-weight: bold;>---</td>
                                         </tr>
                                     @else
                                         <tr>

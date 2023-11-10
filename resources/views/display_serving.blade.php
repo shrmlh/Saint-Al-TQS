@@ -73,21 +73,21 @@ use App\Models\Queue;
                 <div class="grid-col" id="refreshable-div">
                     <h2>NOW SERVING</h2>
                     @if ($dataS->isEmpty())
-                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"  id="ServingQ"><h1>---</h1></button>
+                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"  id="ServingQ" style="background-color:#000435; height:100px; "><h1>---</h1></button>
                     @else
-                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block" id="queue-number"><h1>{{ $firstItem->queue_no }}</h1></button>
+                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block" id="queue-number" style="background-color:#000435 ; height:100px;"><h1>{{ $firstItem->queue_no }}</h1></button>
                     @endif
 
                 </div>
                 <div class="grid-col">
                     <h2>PROCEED TO</h2>
                     @if ($dataS->isEmpty())
-                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"><h1>---</h1></button>
+                        <button type="button" class="btn btn-flat btn-primary btn-lg btn-block" style="background-color:#000435 ; height:100px;"><h1>---</h1></button>
                     @else
                         @if ($firstItem->transaction == "CASHIER")
-                            <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"><h1>CASHIER</h1></button>
+                            <button type="button" class="btn btn-flat btn-primary btn-lg btn-block" style="background-color:#000435 ; height:100px;"><h1>CASHIER</h1></button>
                         @else
-                            <button type="button" class="btn btn-flat btn-primary btn-lg btn-block"><h1>REGISTRAR</h1></button>
+                            <button type="button" class="btn btn-flat btn-primary btn-lg btn-block" style="background-color:#000435 ; height:100px;"><h1>REGISTRAR</h1></button>
                         @endif
                     @endif
                 </div>

@@ -39,9 +39,9 @@ class CreateUsersTable extends Migration
 
         DB::table('users')->insert( array(
             array(
-            "firstname" => "Sharmelah", 
-            "middleInitial" => "J.", 
-            "lastname" => "Esquibel", 
+            "firstname" => "Admin", 
+            "middleInitial" => "A,", 
+            "lastname" => "Admin", 
             "contactno"=> "09123456789",
             "address" => "Koronadal City",
             "birthday" => "1999/04/26",

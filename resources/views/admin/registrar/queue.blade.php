@@ -120,7 +120,9 @@
                                         <h3>FOR {{ $firstItem->transaction }}</h3>
 
                                         <h4>SERVING TIME:</h4>
+                                        <!-- <h4 class="text-danger" >00:00:00</h4> -->
                                         <h4 class="text-danger" id="timerLabel">00:00:00</h4>
+
                                     @endif
                                 </div>
                             </div>
@@ -188,6 +190,8 @@
                                                         <div class="modal-body">
                                                             <div class="form-group">
                                                                 <P>Would you like to procced?</p>
+                                                                
+                                                                <input name="timerLabelInput" id="timerLabelInput" type="text" value="00:00:00" style="display: none;"></input>
                                                                 <input name="id" required type="text" id="id" value="{{ $firstItem->id }}" style="display: none;"></input>
                                                             </div>
                                                         </div>
@@ -223,6 +227,8 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <P>This queue will be marked as 'No show'. Would you like to proceed?</p>
+                                                                    
+                                                                    <input name="timerLabelInput" id="timerLabelInput" type="text" value="00:00:00" style="display: none;"></input>
                                                                     <input name="id" required type="text" id="id" value="{{ $firstItem->id }}" style="display: none;"></input>
                                                                 </div>
                                                             </div>
@@ -470,6 +476,8 @@
                                                         <div class="modal-body">
                                                             <div class="form-group">
                                                                 <P>Would you like to procced?</p>
+                                                                
+                                                                <input name="timerLabelInput" id="timerLabelInput" type="text" value="00:00:00" style="display: none;"></input>
                                                                 <input name="id" required type="text" id="id" value="{{ $firstItemC->id }}"  style="display: none;"></input>
                                                             </div>
                                                         </div>
@@ -505,6 +513,8 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <P>This queue will be marked as 'No Show'. Would you like to procced?</p>
+                                                                    
+                                        <input name="timerLabelInput" id="timerLabelInput" type="text" value="00:00:00" style="display: none;"></input>
                                                                     <input name="id" required type="text" id="id" value="{{ $firstItemC->id }}"  style="display: none;" ></input>
                                                                 </div>
                                                             </div>
@@ -594,6 +604,7 @@
 
         const startButton = document.getElementById('startButton');
         const timerLabel = document.getElementById('timerLabel');
+        const timerLabelInput = document.getElementById('timerLabelInput');
 
         startButton.addEventListener('click', function () {
             if (!timerRunning) {
@@ -615,10 +626,31 @@
 
             const formattedTime = pad(hours) + ':' + pad(minutes) + ':' + pad(remainingSeconds);
             timerLabel.innerText = formattedTime;
+            timerLabelInput.value = formattedTime;
         }
 
         function pad(val) {
             return val < 10 ? '0' + val : val;
         }
+
+        // Use JavaScript to set the value of the hidden input field
+        // $timerLabel = document.getElementById('#timerLabel').value();
+        //                                     document.getElementById('serving_time').value = $timerLabel;
+    </script>
+
+<script>
+        // // Function to update the input field value
+        // function updateInputValue() {
+        //     const timerLabelElement = document.getElementById('timerLabel');
+        //     const timerLabelInput = document.getElementById('timerLabelInput');
+        //     timerLabelInput.value = timerLabelElement.textContent;
+        // }
+
+        // // Initial call to set the input field value
+        // updateInputValue();
+
+        // // Set up an event listener to respond to changes in the h4 element
+        // const timerLabelElement = document.getElementById('timerLabel');
+        // timerLabelElement.addEventListener('change', updateInputValue);
     </script>
 @endsection

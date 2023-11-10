@@ -19,7 +19,7 @@ class QueueTable extends Migration
             $table->string('transaction', 10);
             $table->smallInteger('status');
             $table->integer('employeeID')->nullable();
-            $table->time('serving_time')->nullable();
+            $table->string('serving_time')->nullable();
             $table->timestamps();
         });
     }

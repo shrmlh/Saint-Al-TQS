@@ -197,13 +197,13 @@
             var nw = window.open('','_blank','width=700,height=500,top=75,left=200')
                 nw.document.write(_el.html())
                 nw.document.close()
-                setTimeout(() => {
-                    nw.print()
-                    setTimeout(() => {
-                        nw.close()
-                        $('#getQueue').modal('hide')
-                    }, 200);
-                }, 500);
+                // setTimeout(() => {
+                //     nw.print()
+                //     setTimeout(() => {
+                //         nw.close()
+                //         $('#getQueue').modal('hide')
+                //     }, 200);
+                // }, 500);
 
             // var _modalContent = $('#getQueue').clone();
             // _modalContent.find('.modal-footer').hide();
